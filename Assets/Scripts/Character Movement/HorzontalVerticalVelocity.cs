@@ -16,7 +16,8 @@ public class HorzontalVerticalVelocity : MonoBehaviour
     private void Update()
     {
         MoveRightLeft();
-        MoveUpDown();      
+        MoveUpDown();
+        VelocityCap();
     }
 
     void VelocityCap()
@@ -29,18 +30,29 @@ public class HorzontalVerticalVelocity : MonoBehaviour
                 return;
             }
 
-            if (horizontalVelocity < 0)
+
+            if (horizontalVelocity < 0 && Input.GetKeyDown(GameManager.GM.Right))
             {
                 horizontalVelocity = 0;
             }
 
-            if(verticalVelocity > vVelocityPositiveLimit)
+            if (horizontalVelocity > 0 && Input.GetKeyDown(GameManager.GM.Left))
+            {
+                horizontalVelocity = 0;
+            }
+
+            if (verticalVelocity > vVelocityPositiveLimit)
             {
                 verticalVelocity = vVelocityPositiveLimit;
                 return;
             }
 
-            if(verticalVelocity < 0)
+            if(verticalVelocity < 0 && Input.GetKeyDown(GameManager.GM.Right))
+            {
+                verticalVelocity = 0;
+            }
+
+            if (verticalVelocity > 0 && Input.GetKeyDown(GameManager.GM.Left))
             {
                 verticalVelocity = 0;
             }

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ability1_P1 : MonoBehaviour
+public class dumbtestenemy : BasicEnemy
 {
-    // Ability 1 projectile behavour. Apply damage stat to enemy hit.
 
     // Use this for initialization
     void Start()
@@ -15,6 +14,6 @@ public class Ability1_P1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right);
+
     }
 }

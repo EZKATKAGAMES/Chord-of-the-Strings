@@ -1047,6 +1047,8 @@ MonoBehaviour:
   attackStyleSwitchRadius: 0
   meleeMode: 0
   rangeMode: 0
+  projectileOrigin: {fileID: 0}
+  angle: {x: 0, y: 0, z: 0, w: 0}
   cursorPosition: {x: 0, y: 0, z: 0}
 --- !u!58 &796650560
 CircleCollider2D:
@@ -1902,6 +1904,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1498641786}
+  - component: {fileID: 1498641787}
   m_Layer: 0
   m_Name: ProjectileOrigin
   m_TagString: Untagged
@@ -1922,6 +1925,17 @@ Transform:
   m_Father: {fileID: 796650557}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1498641787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1498641785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1e0b627c4319a4fb682ab67b6ea951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1518959323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,6 +1948,8 @@ GameObject:
   - component: {fileID: 1518959326}
   - component: {fileID: 1518959325}
   - component: {fileID: 1518959324}
+  - component: {fileID: 1518959330}
+  - component: {fileID: 1518959329}
   m_Layer: 11
   m_Name: TestEnemy
   m_TagString: Player
@@ -1967,7 +1983,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1518959323}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -2058,6 +2074,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1518959329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1518959323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd8b55fdf157eb44be91f7c2a6b930a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggroRadius: 0
+--- !u!114 &1518959330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1518959323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e757ddbae6af0e4594f4f453b8db885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &1598621004
 GameObject:
   m_ObjectHideFlags: 0

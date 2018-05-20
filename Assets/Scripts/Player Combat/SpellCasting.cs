@@ -59,8 +59,8 @@ public class SpellCasting : MonoBehaviour
 
         if (cursor.rangeMode && Input.GetMouseButtonDown(0))
         {
-            Debug.Log("tesrsfsfsfsf");
-            Instantiate(ability1P1, cursor.projectileOrigin.transform);
+            
+            Instantiate(ability1P1, cursor.projectileOrigin.transform.position, Quaternion.Euler(new Vector3(0, 0, cursor.projectileOrigin.transform.eulerAngles.z)));
         }
     }
 
