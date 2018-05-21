@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212709260274404596}
   - component: {fileID: 114975421295315744}
   - component: {fileID: 70429947183723774}
+  - component: {fileID: 50506923008404140}
   m_Layer: 0
   m_Name: Ability1-P1
   m_TagString: Untagged
@@ -42,6 +43,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50506923008404140
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1769016308995580}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!70 &70429947183723774
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -68,6 +89,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d6edfe6b30054428fb1278383baec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  damage: 5
+  lifeSpan: 15
+  contact:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  enemy:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!212 &212709260274404596
 SpriteRenderer:
   m_ObjectHideFlags: 1

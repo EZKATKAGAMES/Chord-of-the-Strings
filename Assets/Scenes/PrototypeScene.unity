@@ -1064,7 +1064,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.5
+  m_Radius: 3.3
 --- !u!50 &796650561
 Rigidbody2D:
   serializedVersion: 4
@@ -1950,6 +1950,7 @@ GameObject:
   - component: {fileID: 1518959324}
   - component: {fileID: 1518959330}
   - component: {fileID: 1518959329}
+  - component: {fileID: 1518959331}
   m_Layer: 11
   m_Name: TestEnemy
   m_TagString: Player
@@ -2097,7 +2098,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e757ddbae6af0e4594f4f453b8db885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+--- !u!114 &1518959331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1518959323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbfc1aaf1d60f5499371f09d6cd2dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
 --- !u!1 &1598621004
 GameObject:
   m_ObjectHideFlags: 0
