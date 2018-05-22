@@ -12,4 +12,10 @@ public class Health : MonoBehaviour
             Destroy(gameObject, 0.1f);
         }
     }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+        print("meme");
+    }
 }

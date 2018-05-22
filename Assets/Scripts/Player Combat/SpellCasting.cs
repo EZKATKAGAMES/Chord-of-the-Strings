@@ -12,15 +12,15 @@ public class SpellCasting : MonoBehaviour
     SpriteRenderer rend;
 
     // Melee Attack Variables
+    MeleeBasicAttack mAttack;
     
-    float meleeAttackDistance = 1f;
-    Vector2 currentDirectionX;
 
     // Range Attack Variables
     [Range(1, 4)]
     int selectedSpell = 1;
     
-    GameObject ability1P1;
+    GameObject rangedBasicAttack;
+    GameObject ability1;
 
     // Cooldowns.
 
@@ -30,8 +30,10 @@ public class SpellCasting : MonoBehaviour
         cursor = GetComponent<CursorMode>();
         rend = GetComponent<SpriteRenderer>();
         info = GetComponent<RaycastCharacterController>();
+        mAttack = GetComponent<MeleeBasicAttack>();
 
-        ability1P1 = Resources.Load("Prefabs/PlayerAbilities/Ability1-P1") as GameObject;
+        rangedBasicAttack = Resources.Load("Prefabs/PlayerAbilities/RangedBasicAttack") as GameObject;
+        ability1 = Resources.Load("Prefabs/PlayerAbilities/Ability1") as GameObject;
     }
 
 
@@ -39,7 +41,7 @@ public class SpellCasting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentDirectionX = new Vector2(info.colInfo.faceDirection, 0);
+       
 
         
 
@@ -54,13 +56,13 @@ public class SpellCasting : MonoBehaviour
 
         if (cursor.meleeMode && Input.GetMouseButtonDown(0))
         {
-           // melee       
+            mAttack.Melee();
         }
 
         if (cursor.rangeMode && Input.GetMouseButtonDown(0))
         {
             
-            Instantiate(ability1P1, cursor.projectileOrigin.transform.position, Quaternion.Euler(new Vector3(0, 0, cursor.projectileOrigin.transform.eulerAngles.z)));
+            Instantiate(rangedBasicAttack, cursor.projectileOrigin.transform.position, Quaternion.Euler(new Vector3(0, 0, cursor.projectileOrigin.transform.eulerAngles.z)));
         }
     }
 

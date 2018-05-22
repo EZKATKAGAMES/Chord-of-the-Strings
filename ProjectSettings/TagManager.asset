@@ -7,6 +7,7 @@ TagManager:
   - AscendDescendable
   - PlatformPhaseUP&DOWN
   - Static
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Ascendable
   - CursorMode
   - Enemy
-  - 
+  - RangedBasicAttack
   - 
   - 
   - 
