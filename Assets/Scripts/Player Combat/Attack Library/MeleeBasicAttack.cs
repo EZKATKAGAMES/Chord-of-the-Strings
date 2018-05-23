@@ -10,7 +10,8 @@ public class MeleeBasicAttack : MonoBehaviour
     Vector2 meleeDirection;
     public int damage;
     public float meleeReach;
-    public LayerMask enemy;
+    public LayerMask layerMask;
+    LayerMask enemy;
     
 
     // Use this for initialization
@@ -18,7 +19,8 @@ public class MeleeBasicAttack : MonoBehaviour
     {
         colInfo = GetComponent<RaycastCharacterController>();
         cursor = GetComponent<CursorMode>();
-        enemy = LayerMask.GetMask("Enemy");
+        enemy = 1 << 11;
+        
     }
 
     // Update is called once per frame
@@ -33,19 +35,24 @@ public class MeleeBasicAttack : MonoBehaviour
     {
         meleeDirection = new Vector2(colInfo.colInfo.faceDirection, 0);
         
-        
 
         if (Input.GetMouseButton(0) && cursor.meleeMode)
         {
             Debug.DrawRay(transform.position, meleeDirection, Color.cyan);
+            Debug.DrawLine(transform.position, meleeDirection * meleeReach);
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, meleeDirection, meleeReach, LayerMask.NameToLayer("Enemy"));
+            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, meleeDirection, meleeReach, enemy);
 
-            if (hit.collider.tag == ("Enemy")) // Fix
+
+            if (hit.collider != null)
             {
                 Debug.Log(hit.collider.name);
                 Health test = hit.collider.GetComponent<Health>();
                 test.TakeDamage(damage);
+                
+            }
+            else
+            {
                 
             }
             

@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   meleeReach: 2
-  enemy:
+  layerMask:
     serializedVersion: 2
     m_Bits: 2048
 --- !u!4 &796650557
@@ -1226,6 +1226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead0b7bfda32bb742a3f758e8c37b3fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a1_Speed: 5
+  a1_Charging: 0
 --- !u!1 &835885656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,10 +2063,7 @@ GameObject:
   - component: {fileID: 1518959327}
   - component: {fileID: 1518959326}
   - component: {fileID: 1518959324}
-  - component: {fileID: 1518959330}
-  - component: {fileID: 1518959329}
   - component: {fileID: 1518959331}
-  - component: {fileID: 1518959332}
   m_Layer: 11
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -2174,29 +2173,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1518959329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1518959323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecd8b55fdf157eb44be91f7c2a6b930a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aggroRadius: 0
---- !u!114 &1518959330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1518959323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e757ddbae6af0e4594f4f453b8db885, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1518959331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2209,25 +2185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
---- !u!114 &1518959332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1518959323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d4428d90f845948af881670302f9df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 256
-  ascendableMask:
-    serializedVersion: 2
-    m_Bits: 512
-  horizontalRayCount: 0
-  verticalRayCount: 0
 --- !u!1 &1598621004
 GameObject:
   m_ObjectHideFlags: 0

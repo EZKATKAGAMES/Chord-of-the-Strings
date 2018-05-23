@@ -14,8 +14,10 @@ public class GameManager : MonoBehaviour
     public KeyCode Down { get; set; }
     public KeyCode Up { get; set; }
     // Combat
-    public KeyCode primaryAttack { get; set; } // Mouse1
-    public KeyCode specialAttack { get; set; } // Mouse2
+    public KeyCode Ab1 { get; set; } 
+    public KeyCode Ab2 { get; set; }
+    public KeyCode Ab3 { get; set; }
+    public KeyCode Ab4 { get; set; }
 
 
     private void Awake()
@@ -36,8 +38,12 @@ public class GameManager : MonoBehaviour
         Left = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("leftkey", "A"));
         Down = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("downkey", "S"));
         Up = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("upkey", "W"));
+        Ab1 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("spell1", "Alpha1"));
+        Ab2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("spell2", "Alpha2"));
+        Ab3 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("spell3", "Alpha3"));
+        Ab4 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("spell4", "Alpha4"));
 
-        
+
 
     }
 

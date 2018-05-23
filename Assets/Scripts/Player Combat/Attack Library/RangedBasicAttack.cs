@@ -42,7 +42,11 @@ public class RangedBasicAttack : MonoBehaviour
 
     void DestroyProjectile()
     {
-
+        lifeSpan -= (int)Time.deltaTime;
+        if(lifeSpan <= 0)
+        {
+            Destroy(gameObject, 0);
+        }
 
         if (rigi.velocity.magnitude <= destroyVel)
         {
@@ -53,10 +57,7 @@ public class RangedBasicAttack : MonoBehaviour
 
     void VelocityCap()
     {
-        if(rigi.velocity.magnitude >= velocityLimit)
-        {
-            
-        }
+       
     }
 
     public void Move()
@@ -64,19 +65,20 @@ public class RangedBasicAttack : MonoBehaviour
         //transform.Translate(Vector2.right * Time.deltaTime * speed);
     }
 
-    void ApplyDamage()
-    {
-       
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("REE");
 
-        if(collision.gameObject.layer == enemy)
+
+        if(collision.gameObject.layer == 1 << 11)
         {
-           Health hp = collision.GetComponent<Health>();
-           hp.TakeDamage(damage);
+            print("enemyHit");
+
+            if (collision.GetComponent<Health>())
+            {
+                collision.GetComponent<Health>().TakeDamage(damage);
+                // Destroy
+            }
            
         }
     }
