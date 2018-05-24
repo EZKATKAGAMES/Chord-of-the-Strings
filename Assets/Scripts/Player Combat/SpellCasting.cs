@@ -32,7 +32,9 @@ public class SpellCasting : MonoBehaviour
     float a1_ChargeLimit = 5f;
     public float a1_ForceTimer = 0;
     float a1_ForceFireLimit = 3f;
-
+    public bool onCD;
+    public float cdTimer;
+    int coolDown = 5;
     #endregion
 
     void Start()
@@ -54,8 +56,23 @@ public class SpellCasting : MonoBehaviour
         MeleeAttack();
         RangedAttack();
         FlipSprite();
+        #region Ability1 Functions
         ChargeSpellAbility1();
+        a1_CDTimer(coolDown);
+        #endregion
+    }
 
+    #region FlipSprite, Melee & Ranged AA
+    void FlipSprite()
+    {
+        if (info.colInfo.faceDirection == -1)
+        {
+            rend.flipX = true;
+        }
+        else
+        {
+            rend.flipX = false;
+        }
     }
 
     void RangedAttack()
@@ -72,58 +89,47 @@ public class SpellCasting : MonoBehaviour
             mAttack.Melee();
         }
     }
-    void FlipSprite()
-    {
-        if (info.colInfo.faceDirection == -1)
-        {
-            rend.flipX = true;
-        }
-        else
-        {
-            rend.flipX = false;
-        }
-    }
+    #endregion
 
+    #region Ability1Functions
     void ChargeSpellAbility1()
     {
+        // TODD: Apply root to player while charging.
+
         a1_CalculateMultipliers();
 
-        if (Input.GetKey(GameManager.GM.Ab1))
+        if (Input.GetKey(GameManager.GM.Ab1) && onCD == false)
         {
-            a1_Charging += Time.deltaTime;
+            a1_Charging += Time.deltaTime; // Charing while we are holding ability1 key
             if (a1_Charging > a1_ChargeLimit)
             {
-                a1_Charging = a1_ChargeLimit;
+                a1_Charging = a1_ChargeLimit; // Cap so that we do not go over max charge.
 
-                a1_ForceTimer += Time.deltaTime;
+                a1_ForceTimer += Time.deltaTime; // Start timer to force spell cast
                 if (a1_ForceTimer >= a1_ForceFireLimit)
                 {
                     a1_ForceTimer = 0;
-                    a1_Fire();
-                    // Start cooldown
-                    StartCoroutine(ResetValuesA1());
+                    a1_Fire(); // Force fire
+                    a1_AbilityCoolDown(); // Start cd
+                    ResetValuesA1();
                 }
             }
         }
 
-        // apply damage and force multipliers, fire the spell with those values and reset them.
+        // Fire the spell if we release the key.
         if (a1_Charging > 0 && Input.GetKeyUp(GameManager.GM.Ab1) || a1_ForceTimer == a1_ForceFireLimit)
         {
-            
             a1_Fire();
-            // Start cooldown
-            StartCoroutine(ResetValuesA1());
+            a1_AbilityCoolDown(); // Start cd
+            ResetValuesA1();
         }
     }
-
-    IEnumerator ResetValuesA1()
-    {
-        yield return new WaitForSeconds(0.1f);
+    void ResetValuesA1()
+    {     
         a1_Charging = 0;
         a1_Speed = 5;
         a1_Damage = 20;
     }
-
     void a1_CalculateMultipliers()
     {
         if(a1_Charging > 1 && a1_Charging < 2)
@@ -157,5 +163,32 @@ public class SpellCasting : MonoBehaviour
     {
         Instantiate(ability1, cursor.projectileOrigin.transform.position, Quaternion.Euler(new Vector3(0, 0, cursor.projectileOrigin.transform.eulerAngles.z)));
     }
+    void a1_AbilityCoolDown()
+    {
+        onCD = true;   
+    }
+
+    void a1_CDTimer(float cd)
+    {
+        if(onCD == true)
+        {
+            cdTimer += Time.deltaTime;
+            if (cdTimer >= cd)
+            {
+                onCD = false;
+            }
+
+            if (Input.GetKeyDown(GameManager.GM.Ab1))
+            {
+                print("Cooldown: " + cdTimer.ToString());
+            }
+        }
+        else
+        {
+            cdTimer = 0;
+        }
+       
+    }
+    #endregion
 
 }
