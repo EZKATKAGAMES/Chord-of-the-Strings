@@ -81,5 +81,7 @@ public class RangedBasicAttack : MonoBehaviour
             }
            
         }
+        // Make collisions with anything other than player Destroy object.
+        Destroy(gameObject);
     }
 }
