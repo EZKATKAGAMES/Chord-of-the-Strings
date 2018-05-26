@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     public int health;
     void Update()
     {
-        if(health < 0)
+        if(health <= 0)
         {
             Destroy(gameObject, 0.1f);
         }
@@ -15,7 +15,6 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        health -= amount;
-        print("meme");
+        health -= amount;       
     }
 }

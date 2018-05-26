@@ -17,11 +17,12 @@ public class SpellCasting : MonoBehaviour
     // Range Attack Variables
     [Range(1, 4)]
     int selectedSpell = 1;
+
     
     GameObject rangedBasicAttack;
     GameObject ability1;
 
-    // Cooldowns.
+    
 
 
     #region Ability1 Variables
@@ -87,6 +88,7 @@ public class SpellCasting : MonoBehaviour
         if (cursor.meleeMode && Input.GetMouseButtonDown(0))
         {
             mAttack.Melee();
+            
         }
     }
     #endregion

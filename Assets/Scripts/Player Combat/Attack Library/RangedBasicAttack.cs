@@ -11,77 +11,76 @@ public class RangedBasicAttack : MonoBehaviour
     public int speed;
     public int force;
     public int damage;
-    public int lifeSpan;
-    public int velocityLimit;
-    public int destroyVel;
+    public float lifeSpan;
 
     Rigidbody2D rigi;
     SpriteRenderer rend;
     CapsuleCollider2D col;
+    CircleCollider2D ignoreCol;
     public LayerMask enemy;
     
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         #region Setting References
         col = GetComponent<CapsuleCollider2D>();
         rigi = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
+        ignoreCol = GameObject.Find("Player").GetComponent<CircleCollider2D>();
         #endregion
-
         rigi.AddRelativeForce(Vector2.right * force, ForceMode2D.Impulse);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        InvokeRepeating("Move", 0, repeatRate: 0);
+        Physics2D.IgnoreCollision(col, ignoreCol, ignore: true);        
+    }
+
+    private void Update()
+    {
         DestroyProjectile();
     }
 
     void DestroyProjectile()
     {
-        lifeSpan -= (int)Time.deltaTime;
+        lifeSpan -= Time.deltaTime;
         if(lifeSpan <= 0)
         {
             Destroy(gameObject, 0);
         }
-
-        if (rigi.velocity.magnitude <= destroyVel)
-        {
-            Destroy(gameObject, 0);
-        }
     }
-
-
-    void VelocityCap()
-    {
-       
-    }
-
-    public void Move()
-    {
-        //transform.Translate(Vector2.right * Time.deltaTime * speed);
-    }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
+        
 
-        if(collision.gameObject.layer == 1 << 11)
+        if(collision.gameObject.layer == 11)
         {
-            print("enemyHit");
+            Debug.Log("meme");
 
             if (collision.GetComponent<Health>())
             {
-                collision.GetComponent<Health>().TakeDamage(damage);
-                // Destroy
-            }
-           
+                Health test = collision.GetComponent<Health>();
+                test.TakeDamage(damage);
+            }      
         }
-        // Make collisions with anything other than player Destroy object.
-        Destroy(gameObject);
+
+        // Maybe instantiate FX first?
+
+             
+        // Destroy on impact of these layers.
+        if (collision.gameObject.layer == 1 
+            | collision.gameObject.layer == 2
+            | collision.gameObject.layer == 3
+            | collision.gameObject.layer == 4
+            | collision.gameObject.layer == 5
+            | collision.gameObject.layer == 8
+            | collision.gameObject.layer == 10
+            | collision.gameObject.layer == 11)
+        {
+            Destroy(gameObject, 0.05f);
+        }
+        
     }
 }

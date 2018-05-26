@@ -11,10 +11,11 @@ public class MeleeBasicAttack : MonoBehaviour
     public int damage;
     public float meleeReach;
     public LayerMask enemy;
-    public int comboCount;
+    public int comboProgress;
     public bool readyToAttack = true;
     float resetCombo;
     public float continueCombo;
+    Event mouseEvent;
 
     bool ability4Override;
 
@@ -24,50 +25,46 @@ public class MeleeBasicAttack : MonoBehaviour
         colInfo = GetComponent<RaycastCharacterController>();
         cursor = GetComponent<CursorMode>();
         enemy = 1 << 11; // BitShift (2048)
-        
     }
 
     private void Update()
     {
-        MeleeCombo1(1f, 0.7f, 0.4f);
-        MeleeComboMultipliers();
+        MeleeCombo1(0.7f, 0.4f, 0.2f);
+        
+   
     }
 
     public void Melee()
     {
-        meleeDirection = new Vector2(colInfo.colInfo.faceDirection, 0);
-     
-        if (Input.GetMouseButton(0) && cursor.meleeMode && readyToAttack == true && ability4Override == false)
+        meleeDirection = new Vector2(colInfo.colInfo.faceDirection, 0);     
+        if(Input.GetMouseButton(0) && cursor.meleeMode && readyToAttack == true && ability4Override == false)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, meleeDirection, meleeReach, enemy);
-            if (hit.collider != null)
+            if (hit.collider != null) // Hit something on enemy layer
             {
                 readyToAttack = false;
                 Debug.Log(hit.collider.name);
                 if (hit.transform.GetComponent<Health>())
                 {
                     ApplyDamage(hit);
-                    comboCount++;
-                    readyToAttack = false;
+                    
                 }
             }
-            else
-            {
-                // Addcombocount
-                readyToAttack = false;
+            else // hit nothing
+            {               
                 
             }
-        }
-
-        
+        }       
     }
 
-    void AddComboCount()
+    private void OnMouseDown()
     {
-        if (Input.GetMouseButton(0))
+        if(readyToAttack == true)
         {
-            comboCount++;
-        }
+            comboProgress++;
+            MeleeComboMultipliers();
+            readyToAttack = false;
+        }  
     }
 
     void ApplyDamage(RaycastHit2D hit)
@@ -76,73 +73,76 @@ public class MeleeBasicAttack : MonoBehaviour
         test.TakeDamage(damage);
     }
 
-    void MeleeCombo1(float comboReset1, float comboReset2, float comboReset3)
+    IEnumerator ReadyToAttack()
     {
-       
-
-        if(comboCount >= 1)
+        if(readyToAttack == false)
         {
+            yield return new WaitForSeconds(0.15f);
+            readyToAttack = true;
+        }        
+    }
 
+    void MeleeCombo1(float comboReset1, float comboReset2, float comboReset3)
+    {    
+        if(comboProgress == 1)
+        {
+            StartCoroutine(ReadyToAttack());
             continueCombo += (Time.deltaTime);
             if (continueCombo >= comboReset1) // When we reach our limit to reset combo
             {               
                 readyToAttack = true;
-                comboCount = 0;
+                comboProgress = 0;
                 continueCombo = 0;
             }
-            else // When we are within the limit to extend combo
-            {
-                comboCount++;
-            }
-
         }
-        else if(comboCount >= 2)
+        else if(comboProgress == 2)
         {
+            StartCoroutine(ReadyToAttack());
             continueCombo = 0;
             continueCombo += (Time.deltaTime);
             if (continueCombo >= comboReset2)
             {
                 readyToAttack = true;
-                comboCount = 0;
+                comboProgress = 0;
                 continueCombo = 0;
-            }
-            else
-            {
-                comboCount++;
-            }
+            }           
         }
-        else if(comboCount >= 3)
+        else if(comboProgress == 3)
         {
+            StartCoroutine(ReadyToAttack());
             continueCombo += (Time.deltaTime);
             if (continueCombo >= comboReset3)
             {
                 readyToAttack = true;
-                comboCount = 0;
+                comboProgress = 0;
                 continueCombo = 0;
-            }
-            else
-            {
-                comboCount++;
-            }
+            }        
+        }
+        else if(comboProgress >= 4) // Stop over limit
+        {
+            comboProgress = 0;
+            damage = 20;
         }
     }
 
-    void MeleeComboMultipliers() // Use enum instead!!!
+    void MeleeComboMultipliers()
     {
-        if(comboCount == 1)
+        if(comboProgress == 1)
         {
-            damage *= (int)0.5f;
+            damage = damage + 5;
         }
-        else if(comboCount == 2)
+        else if(comboProgress == 2)
         {
-            damage *= 1;
+            damage = damage + 10;
         }
-        else if(comboCount == 3)
+        else if(comboProgress == 3)
         {
-            damage *= 2;
+            damage = damage + 15;
+            meleeReach = meleeReach * 2;
         }
         else
         {
+            meleeReach = 2;
             damage = 20;
         }
     }

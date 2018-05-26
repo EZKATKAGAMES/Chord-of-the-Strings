@@ -92,9 +92,7 @@ MonoBehaviour:
   speed: 15
   force: 10
   damage: 5
-  lifeSpan: 15
-  velocityLimit: 200
-  destroyVel: 5
+  lifeSpan: 6
   enemy:
     serializedVersion: 2
     m_Bits: 2048
