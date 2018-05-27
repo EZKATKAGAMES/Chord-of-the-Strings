@@ -54,7 +54,7 @@ public class SpellCasting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MeleeAttack();
+        
         RangedAttack();
         FlipSprite();
         #region Ability1 Functions
@@ -83,14 +83,7 @@ public class SpellCasting : MonoBehaviour
             Instantiate(rangedBasicAttack, cursor.projectileOrigin.transform.position, Quaternion.Euler(new Vector3(0, 0, cursor.projectileOrigin.transform.eulerAngles.z)));
         }
     }
-    void MeleeAttack()
-    {
-        if (cursor.meleeMode && Input.GetMouseButtonDown(0))
-        {
-            mAttack.Melee();
-            
-        }
-    }
+    
     #endregion
 
     #region Ability1Functions
@@ -169,7 +162,6 @@ public class SpellCasting : MonoBehaviour
     {
         onCD = true;   
     }
-
     void a1_CDTimer(float cd)
     {
         if(onCD == true)
