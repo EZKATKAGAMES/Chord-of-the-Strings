@@ -52,7 +52,7 @@ public class PlayerCharacter : MonoBehaviour
         #region PLAYER INPUT
 
         // Jump
-        if (grounded && (Input.GetKeyDown(KeyCode.Space)))
+        if (grounded && (Input.GetKeyDown(GameManager.GM.Jump)))
             Jump();
         // Movement Axes
         moveHorizontal = axes.horizontalVelocity;
@@ -80,6 +80,8 @@ public class PlayerCharacter : MonoBehaviour
             transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
         }
         #endregion
+
+        
 
         #region Ground Check
         RaycastHit gc; // Hit
