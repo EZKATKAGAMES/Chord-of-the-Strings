@@ -21,13 +21,6 @@ public class HorizontalVerticalVelocity : MonoBehaviour
         VelocityCap();
     }
 
-   
-
-    private void Awake()
-    {
-        
-    }
-
     void VelocityCap()
     {
         if (unCapVelocity == false)

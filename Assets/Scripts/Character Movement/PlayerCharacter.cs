@@ -9,55 +9,63 @@ public class PlayerCharacter : MonoBehaviour
     public float moveSpeed = 0.0f;
     public float timeToJumpApex;
     public float maxJumpHeight;
+    public bool grounded;
 
+    [Header("Cursor Variables")]
     public Transform rotateTarget;
     public Vector3 mousePos;
     public float cameraRayLength = 0.0f;
     public float characterRotationAmount = 0.0f;
+    public LayerMask collisionMask;
 
     //Private Variables
-    private Rigidbody myRB;
-    private float jumpVelocity;
-    public float gravity;
-    public Vector2 velocity;
+    Rigidbody myRB;
+    float jumpVelocity;
+    float gravity;
+    float moveHorizontal;
+    float moveVertical;
+    Vector3 velocity;
     Vector3 input;
+    HorizontalVerticalVelocity axes;
+    
+    // TODO:
 
     void Start()
     {
-        #region Setting up variables
+        #region Setting up Variable References
         rotateTarget = GetComponentInChildren<Transform>();
         myRB = GetComponent<Rigidbody>();
+        axes = GetComponent<HorizontalVerticalVelocity>();
         #endregion
 
-        #region Jump Velocity Variables
-        velocity = myRB.velocity; // Rigid body current velocity
+        #region Jump Velocity Variables      
         gravity = (2 * maxJumpHeight / Mathf.Pow(timeToJumpApex,2)); // Set gravity;
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex; // Set jumpVelocity
         #endregion
 
+        myRB.solverVelocityIterations = 30;
     }
 
     private void Update()
     {
         ApplyGravity();
+        #region PLAYER INPUT
+
+        // Jump
+        if (grounded && (Input.GetKeyDown(KeyCode.Space)))
+            Jump();
+        // Movement Axes
+        moveHorizontal = axes.horizontalVelocity;
+        moveVertical = axes.verticalVelocity;
+
+        #endregion
     }
 
     void FixedUpdate()
     {
         #region Movement
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        input = new Vector3(moveHorizontal, 0, moveVertical);
-
-        if (Input.GetAxis("Horizontal") != 0 || (Input.GetAxis("Vertical") != 0))
-        {
-            print("TestMovement");
-            myRB.AddForce(input * moveSpeed, ForceMode.VelocityChange);
-        }
-
-        
-
+        input = new Vector3(moveVertical, 0, -moveHorizontal); // Movement stored into vector
+        myRB.AddForce(input * moveSpeed, ForceMode.VelocityChange); // Apply the force to our rigidbody
         #endregion
 
         #region Mouse Aiming & LookDirection
@@ -73,40 +81,34 @@ public class PlayerCharacter : MonoBehaviour
         }
         #endregion
 
+        #region Ground Check
+        RaycastHit gc; // Hit
+        if (Physics.Raycast(transform.position, Vector3.down, out gc, 0.6f, collisionMask)) // Ray
+        {
+            if (gc.collider.gameObject.layer == 9) // Int of layer (unity list): 9 is our collision layer           
+                grounded = true;            
+        }
+        else grounded = false; // If our ray has no collision, we are not on standard ground.       
+        Debug.DrawRay(transform.position, Vector3.down * 0.6f, Color.red); // Visual aid
+        #endregion
+
         
 
-
     }
-
-    private void OnCollisionStay(Collision collision)
+  
+    void ApplyGravity() // Apply downward force when airbourne
     {
-        if(collision.collider.gameObject.layer == 9) // temporary ground check do proper later
+        if(grounded == false)
         {
-            velocity.y = 0; // Prevent gravity accumulations MOVE THIS TO PHYSICS.cast CHECK
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Jump();
-            }
+            velocity.y -= gravity * Time.deltaTime;
+            myRB.AddForce(new Vector3(0, velocity.y), ForceMode.Acceleration);
         }
+        else velocity.y = 0;  
     }
 
-    void ApplyGravity()
+    void Jump() // Not handled through Fixed update, not sure if it will disrupt consistency?
     {
-        velocity.y += gravity * Time.deltaTime;
-
-        
+        myRB.AddForce(0, jumpVelocity, 0, ForceMode.Impulse);
     }
 
-    void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            velocity.y = jumpVelocity;
-            myRB.AddForce(new Vector3(0,velocity.y), ForceMode.Impulse); // Apply the velocity values to our rigid body as an impulse force.
-
-        }
-
-       
-    }
 }

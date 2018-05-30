@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager GM;
+    public static GameManager GM = null;
 
     /// Actions which we can associate a key to.
     // Movement
@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
         if (GM == null)
         {
-            DontDestroyOnLoad(GM);
             GM = this;
         }
         else if(GM != this)
