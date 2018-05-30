@@ -8,8 +8,6 @@ public class LoadGM : MonoBehaviour
     void Awake()
     {
         if(GameManager.GM == null)
-        {
             Instantiate(gameManager);
-        }
     }
 }

@@ -7,17 +7,30 @@ public class GameManager : MonoBehaviour
     public static GameManager GM = null;
 
     /// Actions which we can associate a key to.
+    /// 
+
     // Movement
     public KeyCode Jump { get; set; }
     public KeyCode Right { get; set; }
     public KeyCode Left { get; set; }
     public KeyCode Down { get; set; }
     public KeyCode Up { get; set; }
-    // Combat
-    public KeyCode Ab1 { get; set; } 
-    public KeyCode Ab2 { get; set; }
-    public KeyCode Ab3 { get; set; }
-    public KeyCode Ab4 { get; set; }
+
+    // CombatSpell Selection
+    public KeyCode Ab1 { get; set; } // Starshot
+    public KeyCode Ab2 { get; set; } // Radiant Sun
+    public KeyCode Ab3 { get; set; } // Blackhole
+    public KeyCode Ab4 { get; set; } // Star sign
+
+    // Cycle Instrument
+    public KeyCode In1 { get; set; } // Harp
+    public KeyCode In2 { get; set; } // Violin
+    public KeyCode In3 { get; set; } // Erhu
+    public KeyCode In4 { get; set; } // Guzheng
+
+
+
+
 
 
     private void Awake()
