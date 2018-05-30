@@ -8,6 +8,8 @@ public class CombatConductor : MonoBehaviour
     /// combat abilities for the player.
     /// 
 
+
+
     // Use this for initialization
     void Start()
     {
@@ -19,4 +21,6 @@ public class CombatConductor : MonoBehaviour
     {
 
     }
+
+    
 }
