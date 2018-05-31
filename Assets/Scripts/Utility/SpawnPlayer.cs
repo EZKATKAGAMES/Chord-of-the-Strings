@@ -10,6 +10,6 @@ public class SpawnPlayer : MonoBehaviour
     void Awake()
     {
         if (player != null)
-            Instantiate(player);       
+            Instantiate(player,spawnPoint.position,this.player.transform.rotation);       
     }
 }

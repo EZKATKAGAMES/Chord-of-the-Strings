@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - MeleeObject
+  - Earth
+  - HUB
+  - TutorialCombat
+  - SpawnPoint
+  - TutorialBoss
   layers:
   - Default
   - TransparentFX
