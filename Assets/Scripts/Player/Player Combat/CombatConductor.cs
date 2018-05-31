@@ -8,19 +8,34 @@ public class CombatConductor : MonoBehaviour
     /// combat abilities for the player.
     /// 
 
+
+
+    #region Melee Variables
+    public float meleeDamage;
     
 
-    
+  
+
+    #endregion
+
+
     void Start()
     {
-
+       
     }
 
     
     void Update()
     {
-
+        
     }
 
-    
+    private void FixedUpdate()
+    {
+        
+    }
+
+   
+
+
 }
