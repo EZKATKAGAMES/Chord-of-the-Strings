@@ -8,16 +8,24 @@ public class CombatConductor : MonoBehaviour
     /// combat abilities for the player.
     /// 
 
-
-
     #region Melee Variables
     public float meleeDamage;
-    
+    Melee meleeRef;
 
-  
+
 
     #endregion
 
+    #region Ability1: StarShot Variables
+    GameObject projectile;
+
+    #endregion
+
+    private void Awake()
+    {
+        meleeRef = GetComponent<Melee>();
+
+    }
 
     void Start()
     {
@@ -27,7 +35,29 @@ public class CombatConductor : MonoBehaviour
     
     void Update()
     {
-        
+        meleeRef.MeleeAttack();
+    }
+
+    void MeleeComboModifiers()
+    {
+        float defaultDamage = 10f;
+        if (meleeRef.comboProgress == 0) // No combo
+        {
+            meleeDamage = defaultDamage;
+        }
+        else if(meleeRef.comboProgress == 1)
+        {
+            meleeDamage *= 0.3f;
+        }
+        else if(meleeRef.comboProgress == 2)
+        {
+            meleeDamage *= 0.3f;
+        }
+        else if(meleeRef.comboProgress == 3)
+        {
+            meleeDamage *= 0.2f;
+        }
+
     }
 
     private void FixedUpdate()

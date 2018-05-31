@@ -20,6 +20,11 @@ public class Enemy : MonoBehaviour
         Death();
     }
 
+    void TakeDamage(int amount)
+    {
+        health -= damage; // Cast floats to int
+    }
+
     void Death()
     {
         if (health <= 0) // Include necessary animation + particles later.
@@ -31,13 +36,15 @@ public class Enemy : MonoBehaviour
     {
         if (detectMelee.transform.gameObject.layer == 11) // MeleeLayer = 11 (Unity Order)
         {
-            CombatConductor setDamage = detectMelee.GetComponentInParent<CombatConductor>(); // Reference script to get values
+            Debug.Log(detectMelee.name);
+            Debug.Log(detectMelee.GetComponentInParent<GameObject>().name);
+            CombatConductor setDamage = detectMelee.gameObject.GetComponentInParent<CombatConductor>(); // Reference script to get values
             float damage = setDamage.meleeDamage; // Store value
-
-            health -= damage; // Take damage;
-
+            TakeDamage((int)damage); // Take Damage
             Debug.Log("ow");
         }
     }
+
+
     #endregion
 }

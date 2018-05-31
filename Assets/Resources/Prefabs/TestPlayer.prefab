@@ -385,10 +385,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256e4f34904571448a2a1d58ec4b5a10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTilNextMelee: 0.6
+  timeTilNextMelee: 0.4
   timer1: 0
+  timer2: 0
+  timer3: 0
+  activeTime: 0.1
   meleeLength: 1.3
   readyToMelee: 1
+  comboProgress: 0
+  comboResetTimer: 3
 --- !u!114 &114668115898861738
 MonoBehaviour:
   m_ObjectHideFlags: 1
