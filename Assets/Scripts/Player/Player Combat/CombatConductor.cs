@@ -23,7 +23,7 @@ public class CombatConductor : MonoBehaviour
 
     private void Awake()
     {
-        meleeRef = GetComponent<Melee>();
+        meleeRef = GetComponentInChildren<Melee>();
 
     }
 

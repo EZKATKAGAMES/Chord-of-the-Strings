@@ -7,7 +7,7 @@ public class HorizontalVerticalVelocity : MonoBehaviour
     // The purpose of this script is to controll values which are used as a multiplier to control our velocity.
     // TODO: Make it better.
 
-
+    public bool inputRecieved;
     public float horizontalVelocity;
     public float verticalVelocity;
     public float hVelocityPositiveLimit = 1; // By defualt we cannot bypass this multiplier for calculating our speed.
@@ -19,6 +19,14 @@ public class HorizontalVerticalVelocity : MonoBehaviour
         MoveRightLeft();
         MoveUpDown();
         VelocityCap();
+
+        if (horizontalVelocity == 0 && verticalVelocity == 0)
+        {
+            inputRecieved = false;
+        }
+        else inputRecieved = true;
+            
+
     }
 
     void VelocityCap()

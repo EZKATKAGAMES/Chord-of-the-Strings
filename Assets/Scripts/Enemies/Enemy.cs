@@ -8,10 +8,10 @@ public class Enemy : MonoBehaviour
     public float damage;
     public float movementSpeed;
 
-    
+
     void Start()
     {
-
+        
     }
 
    
@@ -20,9 +20,9 @@ public class Enemy : MonoBehaviour
         Death();
     }
 
-    void TakeDamage(int amount)
+   public void TakeDamage(int amount)
     {
-        health -= damage; // Cast floats to int
+        health -= amount; // Cast floats to int
     }
 
     void Death()
@@ -31,20 +31,4 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
     }
 
-    #region Detect Incoming Melee Damage
-    private void OnTriggerEnter(Collider detectMelee)
-    {
-        if (detectMelee.transform.gameObject.layer == 11) // MeleeLayer = 11 (Unity Order)
-        {
-            Debug.Log(detectMelee.name);
-            Debug.Log(detectMelee.GetComponentInParent<GameObject>().name);
-            CombatConductor setDamage = detectMelee.gameObject.GetComponentInParent<CombatConductor>(); // Reference script to get values
-            float damage = setDamage.meleeDamage; // Store value
-            TakeDamage((int)damage); // Take Damage
-            Debug.Log("ow");
-        }
-    }
-
-
-    #endregion
 }

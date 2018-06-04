@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(HorizontalVerticalVelocity))]
+[RequireComponent(typeof(CombatConductor))]
 public class PlayerCharacter : MonoBehaviour
 {
     //Public Variables
@@ -44,6 +47,7 @@ public class PlayerCharacter : MonoBehaviour
         #endregion
 
         myRB.solverVelocityIterations = 30;
+        myRB.freezeRotation = true;
     }
 
     private void Update()
@@ -59,6 +63,8 @@ public class PlayerCharacter : MonoBehaviour
         moveVertical = axes.verticalVelocity;
 
         #endregion
+
+        
     }
 
     void FixedUpdate()

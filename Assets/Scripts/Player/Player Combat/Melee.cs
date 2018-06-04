@@ -6,7 +6,7 @@ public class Melee : MonoBehaviour
 {
     //TODO: Match ActiveLength to the swing animation.
     //  
-
+    CombatConductor damageRef;
     CapsuleCollider meleeColliderRef;
     [Header("Timers")]
     public float timer1 = 0; // Counts up towards timeNextMelee to ready attacks.
@@ -18,6 +18,7 @@ public class Melee : MonoBehaviour
     public float activeTimeLimit = 0.3f; // Time collider is active for.
 
     public int comboProgress = 0; // Moves progress of melee combo.
+    [Header("Properties")]
     public float meleeLength = 1.3f; // Length of the collider.
     public bool readyToMelee = true;
 
@@ -31,6 +32,7 @@ public class Melee : MonoBehaviour
     {
         meleeColliderRef = GetComponentInChildren<CapsuleCollider>();
         meleeColliderRef.enabled = false;
+        damageRef = GetComponentInParent<CombatConductor>();
     }
 
     
@@ -38,7 +40,6 @@ public class Melee : MonoBehaviour
     {
         meleeColliderRef.height = meleeLength;
         MeleeComboProgression();
-        
         
     }
 
@@ -72,11 +73,21 @@ public class Melee : MonoBehaviour
         {
             meleeColliderRef.enabled = true; // Enable
             comboProgress++; // Increase our combo
-            timer3 = 0; // Reset our window to perform combo.
+            timer3 = 0; // Reset our window to perform combo
             readyToMelee = false;
-            Debug.Log("meleee");
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Enemy>())
+        {
+            // Apply damage
+            Enemy hp = other.GetComponent<Enemy>();
+            hp.TakeDamage((int)damageRef.meleeDamage);
+
+        }
     }
 
     void MeleeComboProgression() 
