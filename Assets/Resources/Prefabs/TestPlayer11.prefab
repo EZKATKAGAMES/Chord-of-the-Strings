@@ -288,13 +288,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  timeToJumpApex: 5
-  maxJumpHeight: 5
+  timeToJumpApex: 0.3
+  maxJumpHeight: 2
   grounded: 0
   rotateTarget: {fileID: 4564666585738238}
   mousePos: {x: 0, y: 0, z: 0}
-  cameraRayLength: 0
-  characterRotationAmount: 0
+  cameraRayLength: 1000
+  characterRotationAmount: 10
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeDamage: 10
+  projectile: {fileID: 0}
 --- !u!136 &136624020766265498
 CapsuleCollider:
   m_ObjectHideFlags: 1

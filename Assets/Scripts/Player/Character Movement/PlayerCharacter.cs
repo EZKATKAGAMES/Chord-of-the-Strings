@@ -20,6 +20,7 @@ public class PlayerCharacter : MonoBehaviour
     public float cameraRayLength = 0.0f;
     public float characterRotationAmount = 0.0f;
     public LayerMask collisionMask;
+    public Info MouseVectorInfo;
 
     //Private Variables
     Rigidbody myRB;
@@ -30,6 +31,7 @@ public class PlayerCharacter : MonoBehaviour
     Vector3 velocity;
     Vector3 input;
     HorizontalVerticalVelocity axes;
+
     
     // TODO:
 
@@ -65,13 +67,16 @@ public class PlayerCharacter : MonoBehaviour
         #endregion
 
         
+
     }
 
     void FixedUpdate()
     {
         #region Movement
         input = new Vector3(moveVertical, 0, -moveHorizontal); // Movement stored into vector
+        
         myRB.AddForce(input * moveSpeed, ForceMode.VelocityChange); // Apply the force to our rigidbody
+
         #endregion
 
         #region Mouse Aiming & LookDirection
@@ -116,7 +121,14 @@ public class PlayerCharacter : MonoBehaviour
 
     void Jump() // Not handled through Fixed update, not sure if it will disrupt consistency?
     {
-        myRB.AddForce(0, jumpVelocity, 0, ForceMode.Impulse);
+        myRB.velocity = new Vector3(0,jumpVelocity);
+        //myRB.AddForce(0, jumpVelocity, 0, ForceMode.Impulse);
+    }
+
+    public struct Info
+    {
+        Vector3 mouseLocation;
+        Quaternion aimRotation;
     }
 
 }

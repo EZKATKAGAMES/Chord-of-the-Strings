@@ -17,14 +17,14 @@ public class CombatConductor : MonoBehaviour
     #endregion
 
     #region Ability1: StarShot Variables
-    GameObject projectile;
+    public GameObject projectile;
 
     #endregion
 
     private void Awake()
     {
         meleeRef = GetComponentInChildren<Melee>();
-
+        projectile = Resources.Load("Prefabs/Abilities/Ability1_Starshot") as GameObject;
     }
 
     void Start()
