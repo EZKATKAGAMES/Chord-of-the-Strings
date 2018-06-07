@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Entities;
 
-public class ProjectileRotation : MonoBehaviour // Data
+public class ProjectileRotation : MonoBehaviour
 {
+
+    // Starshot Ref
+    StarShot ability1Ref;
+
     // Centroid of triangle
     public Transform rotationPoint;
+
     
     public int projectileCount = 0;
 
     [HideInInspector]
     public float rotationSpeed = 280;
 
-    public bool inTransit;
+    
 
     #region Speed Variables
     [Tooltip("The speed projectiles rotate around centriod, getting faster when less projectiles are available")]
@@ -24,56 +28,36 @@ public class ProjectileRotation : MonoBehaviour // Data
     public float speed1 = 270;
     #endregion
 
-}
-class RotationSystem : ComponentSystem // Behaviour
-{
-    public struct Components
+    void Awake()
     {
-        public ProjectileRotation rotation; // Access our variables
-        public Transform transform;
-        public StarShot projectileProperties;
+        ability1Ref = GetComponentInParent<StarShot>();
     }
 
-    protected override void OnStartRunning()
+    void Update()
     {
-       
-        
-    }
+        // Rotate around the centriod, on the Y axis.
+        gameObject.transform.RotateAround(rotationPoint.position, new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
 
-    protected override void OnUpdate()
-    {
-        float delta = Time.deltaTime;
-
+        // Number of active projectiles. This determines the rotation speed
+        projectileCount = ability1Ref.projectiles;
         
-        foreach (var ent in GetEntities<Components>())
+        #region rotationSpeed
+        if (projectileCount == 3)
         {
-            // Rotate around the centriod while the projectile is not being fired
-            if (!ent.projectileProperties.inTransit)
-            {
-                ent.transform.RotateAround(ent.rotation.rotationPoint.position, new Vector3(0, 1, 0), ent.rotation.rotationSpeed * delta);
-            }
-           
-
-            ent.rotation.projectileCount = GetEntities<Components>().Length; // Projectile count is equal to the amount of projectile entities.
-
-            // Set speed based on projectile count.
-            #region rotationSpeed
-            if (ent.rotation.projectileCount == 3)
-            {
-                ent.rotation.rotationSpeed = ent.rotation.speed3;
-            }
-            else if(ent.rotation.projectileCount == 2)
-            {
-                ent.rotation.rotationSpeed = ent.rotation.speed2;
-            }
-            else if(ent.rotation.projectileCount == 1)
-            {
-                ent.rotation.rotationSpeed = ent.rotation.speed3;
-            }
-            #endregion
-
+            rotationSpeed = speed3;
         }
+        else if (projectileCount == 2)
+        {
+            rotationSpeed = speed2;
+        }
+        else if (projectileCount == 1)
+        {
+            rotationSpeed = speed1;
+        }
+        #endregion
 
+        Vector3 meme = transform.position - rotationPoint.position;
+
+        Debug.DrawRay(transform.position, -meme, Color.red);
     }
-
 }

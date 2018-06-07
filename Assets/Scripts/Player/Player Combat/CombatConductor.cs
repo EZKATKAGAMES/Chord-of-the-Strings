@@ -8,6 +8,10 @@ public class CombatConductor : MonoBehaviour
     /// combat abilities for the player.
     /// 
 
+    [Range(1, 4)]
+    
+    public int selectedSpell = 1;
+
     #region Melee Variables
     public float meleeDamage;
     Melee meleeRef;
@@ -17,14 +21,16 @@ public class CombatConductor : MonoBehaviour
     #endregion
 
     #region Ability1: StarShot Variables
-    public GameObject projectile;
+    public GameObject ability1;
+
+    public bool spellActive;
 
     #endregion
 
     private void Awake()
     {
         meleeRef = GetComponentInChildren<Melee>();
-        projectile = Resources.Load("Prefabs/Abilities/Ability1_Starshot") as GameObject;
+        ability1 = Resources.Load("Prefabs/Abilities/Ability1_Starshot") as GameObject;
     }
 
     void Start()
@@ -36,6 +42,9 @@ public class CombatConductor : MonoBehaviour
     void Update()
     {
         meleeRef.MeleeAttack();
+        Ability1Handling();
+
+
     }
 
     void MeleeComboModifiers()
@@ -60,9 +69,21 @@ public class CombatConductor : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    void Ability1Handling()
     {
-        
+        // If we have starshot selected.
+        if(selectedSpell == 1)
+        {
+            if(spellActive == false && Input.GetMouseButtonDown(1))
+            {
+                Instantiate(ability1, gameObject.transform);
+                // Start Cooldown
+                spellActive = true;
+            }
+        }
+
+
+
     }
 
    
