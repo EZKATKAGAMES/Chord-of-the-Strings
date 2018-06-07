@@ -9,7 +9,6 @@ public class CombatConductor : MonoBehaviour
     /// 
 
     [Range(1, 4)]
-    
     public int selectedSpell = 1;
 
     #region Melee Variables
@@ -21,16 +20,23 @@ public class CombatConductor : MonoBehaviour
     #endregion
 
     #region Ability1: StarShot Variables
+    [Header("Ability1 Variables")]
     public GameObject ability1;
-
+    public StarShot starShotRef;
     public bool spellActive;
-
+    public bool readyToFire;
+    [Header("   ")] // Inspector aesthetics!!!
+    public float timer1 = 0; // Counts towards the cooldown limit
+    public float timer2 = 0; // Counts towards the fire delay
+    public float ability1CooldownLimit = 0.6f; // Threshold we must reach before we can cast the spell again
+    public float delayBetweenFire = 0.3f; // The time we must wait before firing another shot.
     #endregion
 
     private void Awake()
     {
         meleeRef = GetComponentInChildren<Melee>();
         ability1 = Resources.Load("Prefabs/Abilities/Ability1_Starshot") as GameObject;
+        
     }
 
     void Start()
@@ -44,6 +50,10 @@ public class CombatConductor : MonoBehaviour
         meleeRef.MeleeAttack();
         Ability1Handling();
 
+        if (spellActive)
+        {
+            Invoke("GetStarShotRef", 0);
+        }        
 
     }
 
@@ -69,16 +79,31 @@ public class CombatConductor : MonoBehaviour
 
     }
 
+    #region Ability1 
     void Ability1Handling()
     {
+
+        #region Cooldown
+
+
+
+        #endregion
+
         // If we have starshot selected.
-        if(selectedSpell == 1)
+        if (selectedSpell == 1)
         {
-            if(spellActive == false && Input.GetMouseButtonDown(1))
+            // Activating Ability
+            if (spellActive == false && Input.GetMouseButtonDown(1)) // RMB to activate spell
             {
                 Instantiate(ability1, gameObject.transform);
-                // Start Cooldown
+                // Cooldown
                 spellActive = true;
+                readyToFire = true;
+            }
+
+            if (spellActive == true && Input.GetMouseButtonDown(1) && readyToFire == true) // RMB while spell is active to fire projectiles
+            {
+                starShotRef.GetComponentInChildren<SphereCollider>().enabled = false;
             }
         }
 
@@ -86,7 +111,25 @@ public class CombatConductor : MonoBehaviour
 
     }
 
-   
+    void Ab1Cd()
+    {
+        if(readyToFire == false)
+        {
+            timer2 += Time.deltaTime;
+            if(timer2 >= delayBetweenFire)
+            {
+                readyToFire = true;
+                timer2 = 0;
+            }
+        }
+    }
 
+    void GetStarShotRef()
+    {
+        starShotRef = gameObject.GetComponentInChildren<StarShot>();
+        Debug.Log(starShotRef.name);
+    }
+
+    #endregion
 
 }

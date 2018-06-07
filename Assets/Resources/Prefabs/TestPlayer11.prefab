@@ -290,7 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.54
   timeToJumpApex: 0.3
-  maxJumpHeight: 0.68
+  maxJumpHeight: 2
   grounded: 0
   rotateTarget: {fileID: 4564666585738238}
   mousePos: {x: 0, y: 0, z: 0}
@@ -358,8 +358,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bf417a460dc2645a5b9a1ac1dcf154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedSpell: 1
   meleeDamage: 10
-  projectile: {fileID: 0}
+  ability1: {fileID: 0}
+  starShotRef: {fileID: 0}
+  spellActive: 0
+  readyToFire: 0
+  timer1: 0
+  timer2: 0
+  ability1CooldownLimit: 0.6
+  delayBetweenFire: 0.2
 --- !u!136 &136624020766265498
 CapsuleCollider:
   m_ObjectHideFlags: 1
