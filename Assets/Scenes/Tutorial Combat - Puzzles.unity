@@ -928,6 +928,48 @@ Transform:
   m_Father: {fileID: 256453072}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1541209102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1541209104}
+  - component: {fileID: 1541209103}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1541209103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1541209102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50daeecae22a3ec40851ebe833c0c9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1635928777889178, guid: d9b90271385596540b6682db0cadf56e, type: 2}
+  spawnPoint: {fileID: 55256377}
+--- !u!4 &1541209104
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1541209102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1742155804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50daeecae22a3ec40851ebe833c0c9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1650849150681092, guid: d9b90271385596540b6682db0cadf56e, type: 2}
+  player: {fileID: 1635928777889178, guid: d9b90271385596540b6682db0cadf56e, type: 2}
   spawnPoint: {fileID: 55256377}
 --- !u!114 &2007765052
 MonoBehaviour:
@@ -1228,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d596fc633c8744db7559cd6c30d489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4966593423103344, guid: d9b90271385596540b6682db0cadf56e, type: 2}
+  target: {fileID: 4564666585738238, guid: d9b90271385596540b6682db0cadf56e, type: 2}
   smoothTime: 0.3
 --- !u!1 &2077094037
 GameObject:

@@ -109,7 +109,7 @@ public class PlayerCharacter : MonoBehaviour
 
     }
   
-    void ApplyGravity() // Apply downward force when airbourne
+    void ApplyGravity() // Apply downward force when airborne
     {
         if(grounded == false)
         {
