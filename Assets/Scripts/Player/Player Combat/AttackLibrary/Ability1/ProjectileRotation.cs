@@ -35,6 +35,10 @@ public class ProjectileRotation : MonoBehaviour
 
     void Update()
     {
+        // POLISH: use maths to make the position of each projectile change positions depending on how many projectiles are currently rotating.
+
+        // Add condition so that objects being fired are no longer rotating around the centriod
+
         // Rotate around the centriod, on the Y axis.
         gameObject.transform.RotateAround(rotationPoint.position, new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
 

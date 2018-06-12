@@ -8,6 +8,8 @@ public class StarShot : MonoBehaviour
     [HideInInspector]
     public int projectiles;
 
+    Vector3 newProjectileInstanceLocation;
+
     // Projectile Properties
     public float projectileSpeed;
     public float lifeSpan;
@@ -34,10 +36,17 @@ public class StarShot : MonoBehaviour
     private void Update()
     {
         // Check for how many projectiles are currently rotating the centriod.
-        projectiles = GetComponentsInChildren<SphereCollider>().Length;
-        
+        projectiles = GetComponentsInChildren<SphereCollider>().Length;        
     }
 
+    public void Fire()
+    {
+        Debug.Log("Firing");
+        // Get position of object before it deactivates
+        newProjectileInstanceLocation = colliders[projectiles-1].gameObject.transform.position;
+        
+        
+    }
     
 
 

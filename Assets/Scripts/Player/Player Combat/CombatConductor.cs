@@ -52,7 +52,7 @@ public class CombatConductor : MonoBehaviour
 
         if (spellActive)
         {
-            Invoke("GetStarShotRef", 0);
+            //Invoke("GetStarShotRef", 0);
         }        
 
     }
@@ -89,6 +89,13 @@ public class CombatConductor : MonoBehaviour
 
         #endregion
 
+        if(starShotRef != null)
+        {
+            if (starShotRef.projectiles == 0 && spellActive == true)
+                spellActive = false;
+        }
+       
+
         // If we have starshot selected.
         if (selectedSpell == 1)
         {
@@ -98,17 +105,24 @@ public class CombatConductor : MonoBehaviour
                 Instantiate(ability1, gameObject.transform);
                 // Cooldown
                 spellActive = true;
-                readyToFire = true;
+                StartCoroutine(DelayAfterActivation());
             }
 
             if (spellActive == true && Input.GetMouseButtonDown(1) && readyToFire == true) // RMB while spell is active to fire projectiles
             {
-                starShotRef.GetComponentInChildren<SphereCollider>().enabled = false;
+                GetStarShotRef();
+                starShotRef.Fire();
             }
         }
 
 
 
+    }
+
+    IEnumerator DelayAfterActivation()
+    {
+        yield return new WaitForSeconds(0.2f);
+        readyToFire = true;
     }
 
     void Ab1Cd()
