@@ -24,7 +24,8 @@ public class CombatConductor : MonoBehaviour
     public GameObject ability1;
     public StarShot starShotRef;
     public bool spellActive;
-    public bool readyToFire;
+    public bool readyToActivate = true; // Cooldown for ability
+    public bool readyToFire = false; // Cooldown for firing projectiles
     [Header("   ")] // Inspector aesthetics!!!
     public float timer1 = 0; // Counts towards the cooldown limit
     public float timer2 = 0; // Counts towards the fire delay
@@ -85,48 +86,18 @@ public class CombatConductor : MonoBehaviour
 
         #region Cooldown
 
-
-
-        #endregion
-
-        if(starShotRef != null)
+        // Cooldown between next activation of ability
+        if(readyToActivate == false)
         {
-            if (starShotRef.projectiles == 0 && spellActive == true)
-                spellActive = false;
-        }
-       
-
-        // If we have starshot selected.
-        if (selectedSpell == 1)
-        {
-            // Activating Ability
-            if (spellActive == false && Input.GetMouseButtonDown(1)) // RMB to activate spell
+            timer1 += Time.deltaTime;
+            if(timer1 >= ability1CooldownLimit)
             {
-                Instantiate(ability1, gameObject.transform);
-                // Cooldown
-                spellActive = true;
-                StartCoroutine(DelayAfterActivation());
-            }
-
-            if (spellActive == true && Input.GetMouseButtonDown(1) && readyToFire == true) // RMB while spell is active to fire projectiles
-            {
-                GetStarShotRef();
-                starShotRef.Fire();
+                readyToActivate = true;
+                timer1 = 0;
             }
         }
 
-
-
-    }
-
-    IEnumerator DelayAfterActivation()
-    {
-        yield return new WaitForSeconds(0.2f);
-        readyToFire = true;
-    }
-
-    void Ab1Cd()
-    {
+        // Cooldown between firing active ability
         if(readyToFire == false)
         {
             timer2 += Time.deltaTime;
@@ -136,7 +107,52 @@ public class CombatConductor : MonoBehaviour
                 timer2 = 0;
             }
         }
+
+        #endregion
+
+        
+       
+
+        // If we have starshot selected.
+        if (selectedSpell == 1)
+        {
+            // Activating Ability
+            if (readyToActivate == true && Input.GetMouseButtonDown(1)) // RMB to activate spell
+            {
+                Instantiate(ability1, gameObject.transform);
+                spellActive = true;
+                readyToActivate = false;
+                StartCoroutine(DelayAfterActivation());
+            }
+
+            // Firing
+            if (spellActive == true && Input.GetMouseButtonDown(1) && readyToFire == true) // RMB while spell is active to fire projectiles
+            {
+                GetStarShotRef();
+                starShotRef.Fire();
+            }
+        }
+
+        // When we run out of projectiles
+        if (starShotRef != null)
+        {
+            if (starShotRef.projectiles == 0 && spellActive == true)
+                spellActive = false;
+        }
+
     }
+
+
+
+
+
+    IEnumerator DelayAfterActivation()
+    {
+        yield return new WaitForSeconds(0.2f);
+        readyToFire = true;
+    }
+
+    
 
     void GetStarShotRef()
     {

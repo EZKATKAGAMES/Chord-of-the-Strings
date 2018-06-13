@@ -7,6 +7,10 @@ public class StarShot : MonoBehaviour
 {
     [HideInInspector]
     public int projectiles;
+    int rotatingProjectiles;
+
+    [HideInInspector]
+    public CombatConductor combatRef;
 
     Vector3 newProjectileInstanceLocation;
 
@@ -17,7 +21,7 @@ public class StarShot : MonoBehaviour
 
     // Collider of projectiles // Maybe an array to get each collider??
     public SphereCollider[] colliders;
-
+    Vector3 cursorLocation;
 
     public void Awake()
     {
@@ -28,7 +32,7 @@ public class StarShot : MonoBehaviour
 
     private void Start()
     {
-        
+        combatRef = GetComponentInParent<CombatConductor>();
         
         
     }
@@ -42,12 +46,19 @@ public class StarShot : MonoBehaviour
     public void Fire()
     {
         Debug.Log("Firing");
-        // Get position of object before it deactivates
-        newProjectileInstanceLocation = colliders[projectiles-1].gameObject.transform.position;
+        // Get position of latest projectile in the array (if we are instantiating)
+            //newProjectileInstanceLocation = colliders[projectiles-1].gameObject.transform.position;
+
+        // Get the latest projectile in the array and translate them in the direction of the cursor.
+        colliders[projectiles - 1].gameObject.GetComponentInChildren<ProjectileRotation>(true).stopRotating = true; // Stop rotation
+        colliders[projectiles - 1].transform.Translate(Vector3.forward);
+
+        
         
         
     }
     
+    void projectile
 
 
 
