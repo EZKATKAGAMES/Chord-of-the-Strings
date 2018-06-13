@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectiles: 0
+  combatRef: {fileID: 0}
   projectileSpeed: 0
   lifeSpan: 0
   colliders: []
@@ -321,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {fileID: 4788358245044166}
+  stopRotating: 0
   projectileCount: 0
   rotationSpeed: 280
   speed3: 90
@@ -338,6 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {fileID: 4788358245044166}
+  stopRotating: 0
   projectileCount: 0
   rotationSpeed: 280
   speed3: 90
@@ -355,6 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {fileID: 4788358245044166}
+  stopRotating: 0
   projectileCount: 0
   rotationSpeed: 280
   speed3: 90

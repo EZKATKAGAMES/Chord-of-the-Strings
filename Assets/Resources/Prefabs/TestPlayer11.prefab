@@ -363,10 +363,11 @@ MonoBehaviour:
   ability1: {fileID: 0}
   starShotRef: {fileID: 0}
   spellActive: 0
+  readyToActivate: 0
   readyToFire: 0
   timer1: 0
   timer2: 0
-  ability1CooldownLimit: 0.6
+  ability1CooldownLimit: 20
   delayBetweenFire: 0.2
 --- !u!136 &136624020766265498
 CapsuleCollider:
