@@ -4,51 +4,46 @@ using UnityEngine;
 
 public class Melee : MonoBehaviour
 {
-    //TODO: Match ActiveLength to the swing animation.
-    //  
-    CombatConductor damageRef;
-    CapsuleCollider meleeColliderRef;
+    //TODO: Match time collider is active to animation.
+   
     [Header("Timers")]
     public float timer1 = 0; // Counts up towards timeNextMelee to ready attacks.
+    public float timeTilNextMelee = 0.6f; // Time before attacking is possible again.
+    [Header("      ")]  
     public float timer2 = 0; // Counts up towards activeTime, to deactivate collider.
-    public float timer3 = 0; // Counts up towards comboResetTimer, to reset combo.
-    [Header("Limits")] // 
-    public float timeTilNextMelee = 0.6f; // Time before attacking is possible again.    
-    public float comboResetLimit = 2; // Resets combo when no input is recieved before this number reaches 0.
     public float activeTimeLimit = 0.3f; // Time collider is active for.
-
+    [Header("      ")]
+    public float timer3 = 0; // Counts up towards comboResetTimer, to reset combo.
+    public float comboResetLimit = 2; // Resets combo when no input is recieved before this number reaches 0.
+    [HideInInspector]
     public int comboProgress = 0; // Moves progress of melee combo.
     [Header("Properties")]
     public float meleeLength = 1.3f; // Length of the collider.
     public bool readyToMelee = true;
 
-   
+    // Private
+    CombatConductor combatRef;
+    CapsuleCollider meleeColliderRef;
 
-    
-
-   
-    
     void Start()
     {
         meleeColliderRef = GetComponentInChildren<CapsuleCollider>();
         meleeColliderRef.enabled = false;
-        damageRef = GetComponentInParent<CombatConductor>();
+        combatRef = GetComponentInParent<CombatConductor>();
     }
 
-    
     void Update()
     {
         meleeColliderRef.height = meleeLength;
-        MeleeComboProgression();
-        
+        MeleeComboProgression(); 
     }
 
+    #region Core functionality
     public void MeleeAttack()
     {
         // Preparing to melee again
         if (meleeColliderRef.enabled == false && readyToMelee == false)
         {
-            Debug.Log("Cooldown");         
             timer1 += Time.deltaTime;
             if(timer1 >= timeTilNextMelee)
             {
@@ -76,20 +71,29 @@ public class Melee : MonoBehaviour
             timer3 = 0; // Reset our window to perform combo
             readyToMelee = false;
         }
-
     }
+    #endregion
 
+    // Knockback upon hit detection
     private void OnTriggerEnter(Collider other)
     {
+        // Enemies that derive from enemy base class
         if (other.GetComponent<Enemy>())
         {
-            // Apply damage
-            Enemy hp = other.GetComponent<Enemy>();
-            hp.TakeDamage((int)damageRef.meleeDamage);
+            /// PROBLEM!!!!!
+            //  the collider hits twice??!!!?!
+            /// PROBLEM!!!!!
 
+            Debug.Log("hitenemy");
+            // Apply knockback when hitting   
+            Rigidbody knock = other.GetComponent<Rigidbody>();
+            // Force = B-A
+            Vector3 force = (other.transform.position - transform.position).normalized;
+            knock.AddRelativeForce(force * combatRef.knockForce, ForceMode.Impulse);
         }
     }
 
+    #region Combo function
     void MeleeComboProgression() 
     {
         if(comboProgress == 1) // ComboProgress 1
@@ -131,9 +135,5 @@ public class Melee : MonoBehaviour
 
 
     }
-
-
-    
+    #endregion
 }
-
-  

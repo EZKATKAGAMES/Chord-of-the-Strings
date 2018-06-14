@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public float health;
     public float damage;
     public float movementSpeed;
-
+    public float knockForce;
 
     void Start()
     {
@@ -20,12 +20,12 @@ public class Enemy : MonoBehaviour
         Death();
     }
 
-   public void TakeDamage(int amount)
+   public virtual void TakeDamage(int amount)
     {
         health -= amount; // Cast floats to int
     }
 
-    void Death()
+    public virtual void Death()
     {
         if (health <= 0) // Include necessary animation + particles later.
             Destroy(gameObject);

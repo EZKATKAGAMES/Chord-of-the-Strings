@@ -11,10 +11,8 @@ public class CombatConductor : MonoBehaviour
 
     #region Melee Variables
     public float meleeDamage;
+    public float knockForce;
     Melee meleeRef;
-
-
-
     #endregion
 
     #region Ability1: StarShot Variables
