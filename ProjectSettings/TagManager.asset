@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - MeleeObject
-  - Earth
-  - HUB
-  - TutorialCombat
+  - Passable
   - SpawnPoint
-  - TutorialBoss
+  - Breakable
+  - Star
+  - PressureSwitch
   layers:
   - Default
   - TransparentFX
