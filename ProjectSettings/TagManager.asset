@@ -9,6 +9,7 @@ TagManager:
   - Breakable
   - Star
   - PressureSwitch
+  - Door
   layers:
   - Default
   - TransparentFX
