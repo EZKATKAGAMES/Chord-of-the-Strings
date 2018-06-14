@@ -86,9 +86,9 @@ public class PlayerCharacter : MonoBehaviour
 
         if (Physics.Raycast(raycast, out floorHit, cameraRayLength))
         {
-            Vector3 mouseLocation = floorHit.point - transform.position;
-            Quaternion aimRotation = Quaternion.LookRotation(mouseLocation);
-            transform.rotation = Quaternion.Lerp(transform.rotation, aimRotation, Time.deltaTime * characterRotationAmount);
+            MouseVectorInfo.mouseLocation = floorHit.point - transform.position;
+            MouseVectorInfo.aimRotation = Quaternion.LookRotation(MouseVectorInfo.mouseLocation);
+            transform.rotation = Quaternion.Lerp(transform.rotation, MouseVectorInfo.aimRotation, Time.deltaTime * characterRotationAmount);
             transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
         }
         #endregion
@@ -124,14 +124,13 @@ public class PlayerCharacter : MonoBehaviour
     {
         myRB.velocity = new Vector3(0,jumpVelocity);
         //myRB.AddForce(0, jumpVelocity, 0, ForceMode.Impulse);
+        
     }
 
     public struct Info
     {
-        Vector3 mouseLocation;
-        Quaternion aimRotation;
-
-       
+      public Vector3 mouseLocation;
+      public Quaternion aimRotation;
 
     }
 

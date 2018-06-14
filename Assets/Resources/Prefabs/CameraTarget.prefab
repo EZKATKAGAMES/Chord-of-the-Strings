@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50daeecae22a3ec40851ebe833c0c9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1635928777889178, guid: d9b90271385596540b6682db0cadf56e, type: 2}
+  player: {fileID: 1492265472364374, guid: d9b90271385596540b6682db0cadf56e, type: 2}
   spawnPoint: {fileID: 0}
 --- !u!124 &124102626935557860
 Behaviour:

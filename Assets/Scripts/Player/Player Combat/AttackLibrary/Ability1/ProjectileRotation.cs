@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class ProjectileRotation : MonoBehaviour
 {
-
-    // Starshot Ref
     StarShot ability1Ref;
-
     public float rotationSpeed = 280;
 
     void Awake()
@@ -17,16 +14,9 @@ public class ProjectileRotation : MonoBehaviour
 
     void Update()
     {
-
         // Rotate clockwise.
-        gameObject.transform.Rotate(0, 1, 0, Space.Self);
-        // Model becomes more deplenished as charges are used.
-
-        // Whenholding right click play animation, spawn big projectile.
-
-
-
-
+        gameObject.transform.Rotate(0, 1, 0, Space.Self);        
+        // Change animation/model/texture depending on starshot charges
 
     }
 }
