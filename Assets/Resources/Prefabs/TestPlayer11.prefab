@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0208fcb26d2b51c4483e8784fe858667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.54
+  moveSpeed: 2
   timeToJumpApex: 0.3
   maxJumpHeight: 2
   grounded: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   ability1: {fileID: 0}
   starShotRef: {fileID: 0}
   spellActive: 0
-  readyToActivate: 0
+  readyToActivate: 1
   readyToFire: 0
   timer1: 0
   timer2: 0
