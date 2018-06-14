@@ -6,58 +6,62 @@ using UnityEngine;
 public class StarShot : MonoBehaviour
 {
     [HideInInspector]
-    public int projectiles;
-    int rotatingProjectiles;
-
-    [HideInInspector]
     public CombatConductor combatRef;
-
-    Vector3 newProjectileInstanceLocation;
-
+    
     // Projectile Properties
     public float projectileSpeed;
     public float lifeSpan;
-    
 
-    // Collider of projectiles // Maybe an array to get each collider??
-    public SphereCollider[] colliders;
-    Vector3 cursorLocation;
+    int charges = 3;
+
+    GameObject a1_SmallProjectile;
+    GameObject a1_LargeProjectile;
+
 
     public void Awake()
     {
-        // Reference each collider.
-        colliders = GetComponentsInChildren<SphereCollider>();
-
+        a1_SmallProjectile = Resources.Load("Prefabs/Abilities/a1_SmallProjectile", typeof(GameObject)) as GameObject;
+        a1_LargeProjectile = Resources.Load("Prefabs/Abilities/a1_LargeProjectile", typeof(GameObject)) as GameObject;
     }
 
     private void Start()
     {
+        // In start becuase parent only exist once this object spawned.
         combatRef = GetComponentInParent<CombatConductor>();
-        
+        combatRef.GetStarShotRef();
         
     }
 
     private void Update()
     {
-        // Check for how many projectiles are currently rotating the centriod.
-        projectiles = GetComponentsInChildren<SphereCollider>().Length;        
+           
     }
 
-    public void Fire()
+    public void PressFire()
     {
-        Debug.Log("Firing");
-        // Get position of latest projectile in the array (if we are instantiating)
-            //newProjectileInstanceLocation = colliders[projectiles-1].gameObject.transform.position;
+        // this will activate upon button release before the hold activates
 
-        // Get the latest projectile in the array and translate them in the direction of the cursor.
-        colliders[projectiles - 1].gameObject.GetComponentInChildren<ProjectileRotation>(true).stopRotating = true; // Stop rotation
-        colliders[projectiles - 1].transform.Translate(Vector3.forward);
+        // Play animation
 
         
-        
-        
+
+
+        Instantiate(a1_SmallProjectile); // direction = mouse direction
+        charges--;
     }
     
+    public void HoldFire()
+    {
+        // this will activate upton button hold and release.
+
+        // Play animation
+
+
+        
+
+        Instantiate(a1_LargeProjectile); // direction = mouse direction
+        charges = 0;
+    }
    
 
 

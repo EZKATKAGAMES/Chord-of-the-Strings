@@ -152,9 +152,62 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23439996652938516, guid: 91c3e8d424d398c47af8cf8c80f0d418,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 33540587694790490, guid: 91c3e8d424d398c47af8cf8c80f0d418,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 23439996652938516, guid: 91c3e8d424d398c47af8cf8c80f0d418,
+        type: 2}
+      propertyPath: m_LightProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23439996652938516, guid: 91c3e8d424d398c47af8cf8c80f0d418,
+        type: 2}
+      propertyPath: m_MotionVectors
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555312889701428, guid: 91c3e8d424d398c47af8cf8c80f0d418, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555312889701428, guid: 91c3e8d424d398c47af8cf8c80f0d418, type: 2}
+      propertyPath: m_Name
+      value: AsteroidDisk
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213346140011856, guid: 91c3e8d424d398c47af8cf8c80f0d418, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213346140011856, guid: 91c3e8d424d398c47af8cf8c80f0d418, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91c3e8d424d398c47af8cf8c80f0d418, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1553868932 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1555312889701428, guid: 91c3e8d424d398c47af8cf8c80f0d418,
+    type: 2}
+  m_PrefabInternal: {fileID: 106826378}
+--- !u!114 &1553868936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1553868932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8696c45dbe3ea4981417ac6ea35b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 280
 --- !u!1001 &1742294496
 Prefab:
   m_ObjectHideFlags: 0
@@ -333,7 +386,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2071562378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
