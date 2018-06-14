@@ -209,7 +209,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 8f2dca50247910945b35e40d0401e25d, type: 2}
+  - {fileID: 2100000, guid: 3058727135a2ee3408e384ac983f3414, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -335,7 +335,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -408,9 +408,10 @@ GameObject:
   - component: {fileID: 397182490}
   - component: {fileID: 397182489}
   - component: {fileID: 397182488}
+  - component: {fileID: 397182491}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Pressure Switch
+  m_TagString: PressureSwitch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -482,6 +483,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 397182486}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &397182491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 397182486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ddb804e3d261e4c879b25d7fc5ea2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door: {fileID: 1566596662}
+  DoorOpen: 0
+  minimum: 2
+  maximum: 6
 --- !u!1 &439544899
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +900,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -998,7 +1014,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1083,7 +1099,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1207,6 +1223,7 @@ GameObject:
   - component: {fileID: 868076227}
   - component: {fileID: 868076226}
   - component: {fileID: 868076229}
+  - component: {fileID: 868076230}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Star
@@ -1296,6 +1313,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &868076230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 868076224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de59337faf848c4e9b4ebd4cee5b926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1069965036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1382,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1439,7 +1467,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1609,7 +1637,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1807,7 +1835,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 3058727135a2ee3408e384ac983f3414, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1847,7 +1875,7 @@ GameObject:
   - component: {fileID: 1566596663}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2007,7 +2035,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2092,7 +2120,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2434,7 +2462,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2662,7 +2690,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2747,7 +2775,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a22b49eb206df47448c9d1a20f7d6f06, type: 2}
+  - {fileID: 2100000, guid: 5d150bd9d653574429c13dc03b5967aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
