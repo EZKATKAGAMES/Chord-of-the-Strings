@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114835404477119596}
   m_Layer: 0
   m_Name: Ability2_RadiantSun
-  m_TagString: Ability2:RadiantSun
+  m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
