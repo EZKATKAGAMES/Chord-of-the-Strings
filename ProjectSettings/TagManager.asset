@@ -11,6 +11,7 @@ TagManager:
   - PressureSwitch
   - Door
   - Ability2:RadiantSun
+  - Lift
   layers:
   - Default
   - TransparentFX
