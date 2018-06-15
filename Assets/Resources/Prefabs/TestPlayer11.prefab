@@ -380,6 +380,15 @@ MonoBehaviour:
   a2_activeTimeLimit: 5
   a2_timer2: 0
   a2_coolDownLimit: 6
+  a2_damage: 2
+  ability3: {fileID: 0}
+  spatialSuspensionRef: {fileID: 0}
+  a3_readyToActivate: 1
+  a3_active: 0
+  a3_timer1: 0
+  a3_durationLimit: 0.2
+  a3_timer2: 0
+  a3_cooldownLimit: 20
 --- !u!114 &114812418377849890
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -55,18 +55,30 @@ public class CombatConductor : MonoBehaviour
 
     #endregion
 
+    #region Ability3: GravityLock Variables
+    [Header("   ")] // Inspector aesthetics!!!
+    [Header("Ability3 Variables")]
+    public GameObject ability3;
+    public SpatialSuspension spatialSuspensionRef;
+    public bool a3_readyToActivate = true;
+    public bool a3_active;
+    [Header("   ")] // Inspector aesthetics!!!
+    public float a3_timer1;
+    public float a3_durationLimit; // Duration object is active, not the effect it applies!!
+    [Header("   ")] // Inspector aesthetics!!!
+    public float a3_timer2;
+    public float a3_cooldownLimit;
+
+
+    #endregion
+
     private void Awake()
     {
         meleeRef = GetComponentInChildren<Melee>();
         ability1 = Resources.Load("Prefabs/Abilities/Ability1_Starshot") as GameObject;
         ability2 = Resources.Load("Prefabs/Abilities/Ability2_RadiantSun") as GameObject;
+        ability3 = Resources.Load("Prefabs/Abilities/Ability3_SpatialSuspension") as GameObject;
     }
-
-    void Start()
-    {
-       
-    }
-
     
     void Update()
     {
@@ -75,6 +87,26 @@ public class CombatConductor : MonoBehaviour
 
         Ability1Handling();
         Ability2Handling();
+        Ability3Handling();
+    }
+
+    public void GetStarShotRef()
+    {
+        // Reference the newly spawned prefab, which is a child object to us.
+        starShotRef = gameObject.GetComponentInChildren<StarShot>();
+        Debug.Log(starShotRef.name);
+    }
+    public void GetSpacialSuspensionRef()
+    {
+        // Reference the newly spawned prefab, which is a child object to us.
+        spatialSuspensionRef = gameObject.GetComponentInChildren<SpatialSuspension>();
+        Debug.Log(spatialSuspensionRef.name);
+    }
+    public void GetRadiantSunRef()
+    {
+        // Reference the newly spawned prefab, which is a child object to us.
+        radiantSunRef = gameObject.GetComponentInChildren<RadiantSun>();
+        Debug.Log(radiantSunRef.name);
     }
 
     void AbilitySelection()
@@ -120,7 +152,6 @@ public class CombatConductor : MonoBehaviour
     }
 
     #region Ability1 
-
     void Ability1Handling()
     {
         if(starShotRef == null)
@@ -203,26 +234,15 @@ public class CombatConductor : MonoBehaviour
         }
         #endregion
     }
-
     // Initial ready to fire
     IEnumerator DelayAfterActivation()
     {
         yield return new WaitForSeconds(0.2f);
         a1_readyToFire = true;
     }
-
-    public void GetStarShotRef()
-    {
-        // Reference the newly spawned prefab, which is a child object to us.
-        starShotRef = gameObject.GetComponentInChildren<StarShot>();
-        Debug.Log(starShotRef.name);
-    }
-
     #endregion
 
-
     #region Ability2
-
     void Ability2Handling()
     {
         if(selectedSpell == 2)
@@ -262,14 +282,47 @@ public class CombatConductor : MonoBehaviour
 
         #endregion
     }
-
-    public void GetRadiantSunRef()
-    {
-        // Reference the newly spawned prefab, which is a child object to us.
-        radiantSunRef = gameObject.GetComponentInChildren<RadiantSun>();
-        Debug.Log(radiantSunRef.name);
-    }
-
     #endregion
 
+    #region Ability3
+    void Ability3Handling()
+    {
+        if(selectedSpell == 3)
+        {
+            // If we are able to cast, do it!
+            if(Input.GetMouseButtonDown(1) && a3_readyToActivate == true)
+            {
+                Debug.Log("ability thREEEEEEEE");
+                Instantiate(ability3, transform);
+                a3_active = true;
+                a3_readyToActivate = false;
+            }
+
+            #region Cooldown
+            // If ability is active, start duration coutner.
+            if (a3_active == true && a3_readyToActivate == false)
+            {
+                a3_timer2 = 0;
+                a3_timer1 += Time.deltaTime;
+                if(a3_timer1 >= a3_durationLimit)
+                {
+                    a3_active = false;
+                    a3_timer1 = 0;
+                }
+            }
+            // if the ability duration is up, start cooldown.
+            else if(a3_active == false && a3_readyToActivate == false)
+            {
+                a3_timer2 += Time.deltaTime;
+                if(a3_timer2 >= a3_cooldownLimit)
+                {
+                    a3_readyToActivate = true;
+                    a3_timer2 = 0;
+                }
+            }
+            #endregion
+
+        }
+    }
+    #endregion
 }

@@ -6,16 +6,14 @@ public class RadiantSun : MonoBehaviour
 {
     public float radius;
     CombatConductor combatRef;
-    // Use this for initialization
+
     void Start()
     {
         // In start becuase parent only exist once this object spawned (as child).
         combatRef = GetComponentInParent<CombatConductor>();
         combatRef.GetRadiantSunRef();
-
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (combatRef.a2_active == false)
@@ -27,39 +25,22 @@ public class RadiantSun : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 
-    // Function 1: damage
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.transform.GetComponent<Enemy>())
-        {
-            // Apply status effect
-        }
-    }
-
-    // Function 2: environment interaction
-
-    // TODO: Cool shader stuff
-
+    // Make objects interactable
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<HiddenObject>())
         {
             HiddenObject hide = other.GetComponent<HiddenObject>();
-            hide.colliders[0].enabled = true;
-            
+            hide.colliders[0].enabled = true;        
         } 
     }
-
+    // Return objects to normal
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<HiddenObject>())
         {
             HiddenObject hide = other.GetComponent<HiddenObject>();
             hide.colliders[0].enabled = false;
-        }
-        
+        }      
     }
-
-
 }
