@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 135935915744359624}
   - component: {fileID: 54447221266673448}
   - component: {fileID: 114055182905899236}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: a1_LargeProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 36
   m_CollisionDetection: 0
 --- !u!114 &114055182905899236
 MonoBehaviour:
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedf57c24a46679458be2af4eae723f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  a1Damage: 20
   translateSpeed: 5
   lifeSpan: 10
 --- !u!135 &135935915744359624

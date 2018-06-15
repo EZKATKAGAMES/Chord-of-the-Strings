@@ -10,6 +10,7 @@ TagManager:
   - Star
   - PressureSwitch
   - Door
+  - Ability2:RadiantSun
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Collision
   - Enemy
   - PlayerCast(Melee)
-  - 
-  - 
+  - PlayerProjectiles
+  - Hidden
   - 
   - 
   - 

@@ -61,7 +61,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4911559657871430}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: ProjectileOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
@@ -358,22 +358,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0bf417a460dc2645a5b9a1ac1dcf154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedSpell: 1
-  meleeDamage: 10
+  meleeDamage: 20
   knockForce: 10
   ability1: {fileID: 0}
   starShotRef: {fileID: 0}
-  spellActive: 0
-  readyToActivate: 1
-  readyToFire: 0
-  chargeReady: 0
-  timer1: 0
-  ability1CooldownLimit: 8
-  timer2: 0
-  delayBetweenFire: 0.3
-  timer3: 0
-  chargeLimit: 3
-  meme: 0
+  a1_spellActive: 0
+  a1_readyToActivate: 1
+  a1_readyToFire: 0
+  a1_chargeReady: 0
+  a1_timer1: 0
+  a1_ability1CooldownLimit: 0.6
+  a1_timer2: 0
+  a1_delayBetweenFire: 0.3
+  a1_timer3: 0
+  a1_chargeLimit: 3
+  ability2: {fileID: 0}
+  radiantSunRef: {fileID: 0}
+  a2_active: 0
+  a2_readyToActivate: 1
+  a2_timer1: 0
+  a2_activeTimeLimit: 5
+  a2_timer2: 0
+  a2_coolDownLimit: 6
 --- !u!114 &114812418377849890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,7 +401,7 @@ MonoBehaviour:
   characterRotationAmount: 10
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8704
 --- !u!114 &114994500672594044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,6 +422,7 @@ MonoBehaviour:
   comboProgress: 0
   meleeLength: 5
   readyToMelee: 1
+  enemyHit: 0
 --- !u!136 &136353262123920482
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -14,6 +14,9 @@ public class StarShot : MonoBehaviour
     // Objects to instantiate
     GameObject a1_SmallProjectile;
     GameObject a1_LargeProjectile;
+    // spawnLocation
+    public GameObject origin;
+    public Vector3 originVector;
 
     public void Awake()
     {    
@@ -25,16 +28,23 @@ public class StarShot : MonoBehaviour
         // In start becuase parent only exist once this object spawned (as child).
         combatRef = GetComponentInParent<CombatConductor>();
         mouseInfoRef = GetComponentInParent<PlayerCharacter>();
-        combatRef.GetStarShotRef();  
+        combatRef.GetStarShotRef();
+
+        origin = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {      
         if(charges <= 0)
         {
-            combatRef.spellActive = false;
-            combatRef.readyToFire = false;
+            combatRef.a1_spellActive = false;
+            combatRef.a1_readyToFire = false;
             Destroy(gameObject);
         }
+
+        if (combatRef.a1_spellActive == false)
+            Destroy(gameObject);
+        
+        originVector = origin.transform.position;
     }
 
     #region Firing
@@ -45,9 +55,9 @@ public class StarShot : MonoBehaviour
 
         // Play animation
   
-        Instantiate(a1_SmallProjectile, Vector3.zero, mouseInfoRef.MouseVectorInfo.aimRotation); 
+        Instantiate(a1_SmallProjectile, originVector, mouseInfoRef.MouseVectorInfo.aimRotation); 
         charges--;
-        combatRef.readyToFire = false;
+        combatRef.a1_readyToFire = false;
     }
     
     public void HoldFire()
@@ -57,8 +67,8 @@ public class StarShot : MonoBehaviour
         // Play animation
 
      
-        Instantiate(a1_LargeProjectile, Vector3.zero, mouseInfoRef.MouseVectorInfo.aimRotation); 
-        combatRef.chargeReady = false;
+        Instantiate(a1_LargeProjectile, originVector, mouseInfoRef.MouseVectorInfo.aimRotation); 
+        combatRef.a1_chargeReady = false;
         charges = 0; 
     }
 

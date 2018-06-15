@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class ProjectileTranslation : MonoBehaviour
 {
+    public float a1Damage;
     public float translateSpeed;
     public float lifeSpan;
+    Rigidbody rigi;
     void Start()
     {
-        GameObject meme = GameObject.Find("ProjectileOrigin");
-        transform.position = meme.transform.position;
+        rigi = GetComponent<Rigidbody>();
         StartCoroutine(Death());
+       //rigi.AddForce(Vector3.forward * translateSpeed, ForceMode.Impulse);
     }
     void Update()
     {
+        // Unintended slanting!!! 
         gameObject.transform.Translate(Vector3.forward * (translateSpeed) * (Time.deltaTime));
     }
 

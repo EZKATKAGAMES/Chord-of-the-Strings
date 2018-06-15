@@ -20,6 +20,7 @@ public class Melee : MonoBehaviour
     [Header("Properties")]
     public float meleeLength = 1.3f; // Length of the collider.
     public bool readyToMelee = true;
+    public bool enemyHit = false;
 
     // Private
     CombatConductor combatRef;
@@ -71,6 +72,10 @@ public class Melee : MonoBehaviour
             timer3 = 0; // Reset our window to perform combo
             readyToMelee = false;
         }
+
+        if (meleeColliderRef.enabled == false)
+            enemyHit = false;
+
     }
     #endregion
 
@@ -79,18 +84,21 @@ public class Melee : MonoBehaviour
     {
         // Enemies that derive from enemy base class
         if (other.GetComponent<Enemy>())
-        {
-            /// PROBLEM!!!!!
-            //  the collider hits twice??!!!?!
-            /// PROBLEM!!!!!
+        { 
+            enemyHit = true;
 
-            Debug.Log("hitenemy");
-            // Apply knockback when hitting   
-            Rigidbody knock = other.GetComponent<Rigidbody>();
-            // Force = B-A
-            Vector3 force = (other.transform.position - transform.position).normalized;
-            knock.AddRelativeForce(force * combatRef.knockForce, ForceMode.Impulse);
+            if(enemyHit == true)
+            {
+                Debug.Log("hitenemy");
+                // Apply knockback when hitting   
+                Rigidbody knock = other.GetComponent<Rigidbody>();           
+                Vector3 force = (other.transform.position - transform.position).normalized;
+                knock.AddRelativeForce(force * combatRef.knockForce, ForceMode.Impulse);
+                return;
+            }
+            
         }
+        
     }
 
     #region Combo function

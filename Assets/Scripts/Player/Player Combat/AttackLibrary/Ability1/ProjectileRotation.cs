@@ -10,6 +10,7 @@ public class ProjectileRotation : MonoBehaviour
     void Awake()
     {
         ability1Ref = GetComponentInParent<StarShot>();
+        
     }
 
     void Update()

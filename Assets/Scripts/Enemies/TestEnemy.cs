@@ -26,16 +26,24 @@ public class TestEnemy : Enemy
     }
 
 
+    // DETECTION BUG: CAUSE OF OVERDAMAGE AND OVERKNOCKBACK 
 
     private void OnTriggerEnter(Collider other)
     {
-        // Take damage
+        // Take damage, Melee
         if(other.gameObject.layer == 11)
         {
             Debug.Log("OW!");
             CombatConductor mDmg = other.GetComponentInParent<CombatConductor>();
-            TakeDamage((int)mDmg.meleeDamage);
+            TakeDamage(mDmg.meleeDamage);
         }
+        // Take damage, projectiles
+        if(other.gameObject.layer == 12)
+        {
+            Debug.Log("OW!");
+            ProjectileTranslation a1Dmg = other.GetComponentInParent<ProjectileTranslation>();
+            TakeDamage(a1Dmg.a1Damage);
+        }  
 
         // Knockback if player collides
         if (other.gameObject.tag == "Player")
@@ -47,5 +55,16 @@ public class TestEnemy : Enemy
         }
     }
 
-  
+    private void OnTriggerStay(Collider other)
+    {
+        // Take damage, ability2
+        if (other.GetComponent<RadiantSun>())
+        {
+            float delta = Time.deltaTime;
+            CombatConductor a2Dmg = other.GetComponentInParent<CombatConductor>();
+            TakeDamage(a2Dmg.a2_damage * delta);
+        }
+    }
+
+
 }

@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         Death();
     }
 
-   public virtual void TakeDamage(int amount)
+   public virtual void TakeDamage(float amount)
     {
         health -= amount; // Cast floats to int
     }
