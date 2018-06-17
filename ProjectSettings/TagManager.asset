@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PressureSwitch
+  - Star
+  - Lift
+  - Passable
+  - SpawnPoint
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -14,12 +20,12 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Collision
+  - Enemy
+  - Playercast(Melee)
+  - PlayerProjectiles
+  - Passable
+  - Ascended
   - 
   - 
   - 
