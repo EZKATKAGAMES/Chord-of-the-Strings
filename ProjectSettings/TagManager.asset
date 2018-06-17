@@ -10,6 +10,7 @@ TagManager:
   - Star
   - PressureSwitch
   - Door
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - Enemy
   - PlayerCast(Melee)
   - PlayerProjectiles
-  - Hidden
-  - 
+  - Passable
+  - Ascended
   - 
   - 
   - 

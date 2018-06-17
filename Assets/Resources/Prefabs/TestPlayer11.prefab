@@ -64,7 +64,7 @@ GameObject:
   m_Layer: 0
   m_Name: ProjectileOrigin
   m_TagString: Untagged
-  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -386,9 +386,17 @@ MonoBehaviour:
   a3_readyToActivate: 1
   a3_active: 0
   a3_timer1: 0
-  a3_durationLimit: 0.2
+  a3_durationLimit: 0.3
   a3_timer2: 0
-  a3_cooldownLimit: 20
+  a3_cooldownLimit: 2
+  ability4: {fileID: 0}
+  ascensionRef: {fileID: 0}
+  a4_readyToActivate: 1
+  a4_active: 0
+  a4_timer1: 0
+  a4_durationLimit: 3
+  a4_timer2: 0
+  a4_coolDownLimit: 10
 --- !u!114 &114812418377849890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -400,6 +408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0208fcb26d2b51c4483e8784fe858667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mats:
+  - {fileID: 2100000, guid: 772b5db063179074e9a8ef756d597805, type: 2}
+  - {fileID: 2100000, guid: ae762afbcaabe6846b89081bdc98f5a2, type: 2}
   moveSpeed: 2
   timeToJumpApex: 0.3
   maxJumpHeight: 2

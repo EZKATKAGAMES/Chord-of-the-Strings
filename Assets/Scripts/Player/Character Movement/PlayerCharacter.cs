@@ -7,8 +7,13 @@ using UnityEngine;
 [RequireComponent(typeof(CombatConductor))]
 public class PlayerCharacter : MonoBehaviour
 {
+
+
+    public Material[] mats;
+
     //Public Variables
     [Header("Movement")]
+    public static float initialSpeed;
     public float moveSpeed = 0.0f;
     public float timeToJumpApex;
     public float maxJumpHeight;
@@ -23,6 +28,7 @@ public class PlayerCharacter : MonoBehaviour
     public Info MouseVectorInfo;
 
     //Private Variables
+    
     Rigidbody myRB;
     float jumpVelocity;
     float gravity;
@@ -47,6 +53,8 @@ public class PlayerCharacter : MonoBehaviour
         gravity = (2 * maxJumpHeight / Mathf.Pow(timeToJumpApex,2)); // Set gravity;
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex; // Set jumpVelocity
         #endregion
+
+        initialSpeed = moveSpeed;
 
         myRB.solverVelocityIterations = 30;
         myRB.freezeRotation = true;

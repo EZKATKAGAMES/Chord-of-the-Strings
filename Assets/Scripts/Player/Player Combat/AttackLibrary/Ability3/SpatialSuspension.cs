@@ -8,8 +8,6 @@ public class SpatialSuspension : MonoBehaviour
     public float radius = 2f;
     CombatConductor combatRef;
 
-
-    // Use this for initialization
     void Start()
     {
         combatRef = GetComponentInParent<CombatConductor>();
@@ -21,9 +19,6 @@ public class SpatialSuspension : MonoBehaviour
     {
         if (combatRef.a3_active == false)
             Destroy(gameObject);
-
-        /// TOOD: APPLY SUSPENDED EFFECT TO OBJECTS FOR A TIME LIMIT
-
     }
 
     private void OnDrawGizmos()
@@ -33,6 +28,12 @@ public class SpatialSuspension : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        // If we detect suspendable object
+        if (other.GetComponent<Suspendable>())
+        {
+            Suspendable sus = other.GetComponent<Suspendable>();
+            sus.Locked();
+        } 
     }
+
 }

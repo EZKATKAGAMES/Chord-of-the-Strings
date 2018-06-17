@@ -1,41 +1,70 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Suspendable : MonoBehaviour
 {
-
     Rigidbody rigi;
+    public bool locked;
+    public float suspensionTime;
+    public float suspensionLimit;
+    //Objects
     RigidbodyConstraints suspend;
     RigidbodyConstraints unsuspend;
+    //Enemies
+    NavMeshAgent agent;
 
-    // Use this for initialization
     void Start()
     {
         rigi = GetComponent<Rigidbody>();
+        if (gameObject.tag == "Enemy")
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+        else agent = null;
         // Stop all rotation and movement on rigidbodies
         suspend = RigidbodyConstraints.FreezeAll;
-        unsuspend = RigidbodyConstraints.None;
+        unsuspend = RigidbodyConstraints.None;   
     }
 
-    // Update is called once per frame
     void Update()
-    {
-        /// TOOD: APPLY SUSPENDED EFFECT TO OBJECTS FOR A TIME LIMIT
-
+    {      
+        Duration();
     }
 
-    void OnTriggerEnter(Collider other)
+    public void Locked()
     {
-        // If we collide with ability 3 hitbox.
-        if (other.GetComponent<SpatialSuspension>())
+        Debug.Log("I haveu StOPPED moVING");
+        // Rigi
+        rigi.constraints = suspend;
+        rigi.velocity = Vector3.zero;
+        locked = true;
+
+        if (agent != null)
         {
-            // Suspend movement
-            rigi.constraints = suspend;
-            rigi.velocity = Vector3.zero;
+            // Nav agent
+            agent.isStopped = true;
+            locked = true;
         }
-        else rigi.constraints = unsuspend;
-
-
     }
+
+    // Resume movement/unlock after timer is over.
+    void Duration()
+    {
+        if (locked)
+        {
+            suspensionTime += Time.deltaTime;
+            if (suspensionTime >= suspensionLimit)
+            {
+                locked = false;
+                rigi.constraints = unsuspend;
+                suspensionTime = 0;
+                if(agent != null)
+                {
+                    agent.isStopped = false;
+                }              
+            }
+        }
+    }  
 }

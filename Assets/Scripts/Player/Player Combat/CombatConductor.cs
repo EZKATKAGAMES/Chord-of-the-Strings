@@ -10,6 +10,10 @@ public class CombatConductor : MonoBehaviour
     [Range(1, 4)]
     public static int selectedSpell = 1;
 
+    // -1 is No Layer
+    enum Layers {Default, TransparentFX, IgnoreRaycast, NULL3,Water, UI, PostProcessing, NULL6,NULL7,Collision, Enemy, PlayercastMelee, PlayerProjectiles, Passable, Ascended};
+    Layers gameObjectLayers;
+
     #region Melee Variables
     [Header("Melee")]
     public float meleeDamage;
@@ -68,8 +72,22 @@ public class CombatConductor : MonoBehaviour
     [Header("   ")] // Inspector aesthetics!!!
     public float a3_timer2;
     public float a3_cooldownLimit;
+    #endregion
 
 
+    #region Ability4: Ascension Variables
+    [Header("   ")] // Inspector aesthetics!!!
+    [Header("Ability4 Variables")]
+    public GameObject ability4;
+    public Ascension ascensionRef;
+    public bool a4_readyToActivate = true;
+    public bool a4_active;
+    [Header("   ")] // Inspector aesthetics!!!
+    public float a4_timer1;
+    public float a4_durationLimit;
+    [Header("   ")] // Inspector aesthetics!!!
+    public float a4_timer2;
+    public float a4_coolDownLimit;
     #endregion
 
     private void Awake()
@@ -78,6 +96,7 @@ public class CombatConductor : MonoBehaviour
         ability1 = Resources.Load("Prefabs/Abilities/Ability1_Starshot") as GameObject;
         ability2 = Resources.Load("Prefabs/Abilities/Ability2_RadiantSun") as GameObject;
         ability3 = Resources.Load("Prefabs/Abilities/Ability3_SpatialSuspension") as GameObject;
+        ability4 = Resources.Load("Prefabs/Abilities/Ability4_Ascension") as GameObject;
     }
     
     void Update()
@@ -88,6 +107,7 @@ public class CombatConductor : MonoBehaviour
         Ability1Handling();
         Ability2Handling();
         Ability3Handling();
+        Ability4Handling();
     }
 
     public void GetStarShotRef()
@@ -107,6 +127,12 @@ public class CombatConductor : MonoBehaviour
         // Reference the newly spawned prefab, which is a child object to us.
         radiantSunRef = gameObject.GetComponentInChildren<RadiantSun>();
         Debug.Log(radiantSunRef.name);
+    }
+    public void GetAscensionRef()
+    {
+        // Reference the newly spawned prefab, which is a child object to us.
+        ascensionRef = gameObject.GetComponentInChildren<Ascension>();
+        Debug.Log(ascensionRef.name);
     }
 
     void AbilitySelection()
@@ -324,5 +350,56 @@ public class CombatConductor : MonoBehaviour
 
         }
     }
+    #endregion
+
+    #region Ability4
+
+    void Ability4Handling()
+    {
+        if(selectedSpell == 4)
+        {
+            if(Input.GetMouseButtonDown(1) && a4_readyToActivate == true)
+            {
+                a4_active = true;
+                Instantiate(ability4, transform);
+                a4_readyToActivate = false;
+            }
+            // If spell is active
+            if(a4_active == true && a4_readyToActivate == false)
+            {
+                a4_timer2 = 0;
+                // StartCooldown
+                a4_timer1 += Time.deltaTime;
+                if(a4_timer1 >= a4_durationLimit)
+                {
+                    a4_active = false;
+                    a4_timer1 = 0;
+                }
+            }
+            // If spell is inactive, start cooldown
+            if(a4_active == false && a4_readyToActivate == false)
+            {
+                a4_timer2 += Time.deltaTime;
+                if(a4_timer2 >= a4_coolDownLimit)
+                {
+                    a4_readyToActivate = true;
+                    a4_timer2 = 0;
+                }
+            }
+
+        }
+
+        LayerEdit();
+    }
+
+    void LayerEdit()
+    {
+        if (a4_active)
+        {
+            gameObject.layer = (int)Layers.Ascended;
+        }
+        else gameObject.layer = (int)Layers.Default;
+    }
+
     #endregion
 }

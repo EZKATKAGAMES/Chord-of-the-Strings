@@ -14,6 +14,8 @@ public class HiddenObject : MonoBehaviour
     {
         rend = GetComponent<Renderer>();
         colliders = GetComponents<BoxCollider>();
+        colliders[0].isTrigger = false;
+        colliders[1].isTrigger = true;
 
     }
 
