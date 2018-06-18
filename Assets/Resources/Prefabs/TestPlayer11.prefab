@@ -411,7 +411,7 @@ MonoBehaviour:
   mats:
   - {fileID: 2100000, guid: 772b5db063179074e9a8ef756d597805, type: 2}
   - {fileID: 2100000, guid: ae762afbcaabe6846b89081bdc98f5a2, type: 2}
-  moveSpeed: 2
+  moveSpeed: 0.7
   timeToJumpApex: 0.3
   maxJumpHeight: 2
   grounded: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
   characterRotationAmount: 10
   collisionMask:
     serializedVersion: 2
-    m_Bits: 8704
+    m_Bits: 512
 --- !u!114 &114994500672594044
 MonoBehaviour:
   m_ObjectHideFlags: 1
