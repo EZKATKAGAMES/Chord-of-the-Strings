@@ -75,11 +75,11 @@ public class HorizontalVerticalVelocity : MonoBehaviour
 
         if (Input.GetKey(GameManager.GM.Right))
         {
-            horizontalVelocity += 0.1f;
+            horizontalVelocity = 1f;
         }
         else if (Input.GetKey(GameManager.GM.Left))
         {
-            horizontalVelocity -= 0.1f;
+            horizontalVelocity = -1f;
         }
         else // Reset to zero when no input is recieved.
         {
@@ -97,11 +97,11 @@ public class HorizontalVerticalVelocity : MonoBehaviour
         #region Vertical
         if (Input.GetKey(GameManager.GM.Up))
         {
-            verticalVelocity += 0.1f;
+            verticalVelocity = 1f;
         }
         else if (Input.GetKey(GameManager.GM.Down))
         {
-            verticalVelocity -= 0.1f;
+            verticalVelocity = -1f;
         }
         else // Reset to zero when no input is recieved.
         {

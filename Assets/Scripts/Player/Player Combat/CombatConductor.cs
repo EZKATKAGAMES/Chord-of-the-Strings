@@ -11,7 +11,7 @@ public class CombatConductor : MonoBehaviour
     public static int selectedSpell = 1;
 
     // -1 is No Layer
-    enum Layers {Default, TransparentFX, IgnoreRaycast, NULL3,Water, UI, PostProcessing, NULL6,NULL7,Collision, Enemy, PlayercastMelee, PlayerProjectiles, Passable, Ascended};
+    enum Layers {Default, TransparentFX, IgnoreRaycast, NULL3,Water, UI, PostProcessing, NULL7, CameraRayOnly,Collision, Enemy, PlayercastMelee, PlayerProjectiles, Passable, Ascended, Player};
     Layers gameObjectLayers;
 
     #region Melee Variables
@@ -398,7 +398,7 @@ public class CombatConductor : MonoBehaviour
         {
             gameObject.layer = (int)Layers.Ascended;
         }
-        else gameObject.layer = (int)Layers.Default;
+        else gameObject.layer = (int)Layers.Player;
     }
 
     #endregion
