@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4045003734439772}
+  - component: {fileID: 114227575333119024}
   m_Layer: 0
   m_Name: CameraTarget
   m_TagString: Untagged
@@ -138,6 +139,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1876806688628926, guid: e433727f840609f42ab5ecf109123d9e,
     type: 2}
+--- !u!114 &114227575333119024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243847645178286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807cb1ef7531ab34d8c8a9fed24e0987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  smoothingAmount: 0
+  cameraZoom: 0
+  cameraYRotation: 0
 --- !u!114 &114245228680758460
 MonoBehaviour:
   m_ObjectHideFlags: 1

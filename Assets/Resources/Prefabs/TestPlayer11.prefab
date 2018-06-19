@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 114640298552395500}
   - component: {fileID: 114812418377849890}
   - component: {fileID: 114118161661129756}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: TestPlayer11
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeDamage: 20
-  knockForce: 10
+  knockForce: 5
   ability1: {fileID: 0}
   starShotRef: {fileID: 0}
   a1_spellActive: 0

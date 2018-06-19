@@ -19,14 +19,14 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - CameraRayOnly
   - Collision
   - Enemy
   - Playercast(Melee)
   - PlayerProjectiles
   - Passable
   - Ascended
-  - 
+  - Player
   - 
   - 
   - 

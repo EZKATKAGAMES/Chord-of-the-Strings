@@ -51,7 +51,7 @@ public class TestEnemy : Enemy
 
             Rigidbody knock = other.GetComponent<Rigidbody>();
             Vector3 force = (other.transform.position - transform.position).normalized;
-            knock.AddRelativeForce(force * -knockForce, ForceMode.Impulse);
+            knock.AddRelativeForce(force * knockForce, ForceMode.Impulse);
         }
     }
 
