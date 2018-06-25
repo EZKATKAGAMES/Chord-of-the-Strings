@@ -1,5 +1,8 @@
 {
-  "dependencies": {},
+  "dependencies": {
+    "com.unity.shadergraph": "1.1.9-preview",
+    "com.unity.textmeshpro": "1.2.3"
+  },
   "registry": "https://packages.unity.com",
   "testables": [
     "com.unity.collections",
