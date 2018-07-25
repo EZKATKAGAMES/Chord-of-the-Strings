@@ -81,7 +81,7 @@ public class PlayerCharacter : MonoBehaviour
     void FixedUpdate()
     {
         #region Movement
-        input = new Vector3(moveVertical, 0, -moveHorizontal); // Movement stored into vector
+        input = new Vector3(-moveVertical, 0, moveHorizontal); // Movement stored into vector
         
         
         myRB.AddForce(input * moveSpeed, ForceMode.VelocityChange); // Apply the force to our rigidbody
