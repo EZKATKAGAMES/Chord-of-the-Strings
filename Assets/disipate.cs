@@ -37,7 +37,7 @@ public class disipate : MonoBehaviour
         // Set collider size
         gameObject.transform.localScale = meme;
 
-        Debug.Log(gameObject.transform.localScale.magnitude);
+        
 
         
     }
