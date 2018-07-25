@@ -14,10 +14,6 @@ namespace Networking
         private Rigidbody rigid;
 
         public Camera cam;
-        private float mouseSensitivity = 3f;
-        private float minimumY = -20f;
-        private float maximumY = 15f;
-        float rotationY = 0;
 
         // Use this for initialization
         void Start()
