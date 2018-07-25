@@ -1605,7 +1605,7 @@ Prefab:
     - target: {fileID: 114227575333119024, guid: 5b5bee53217d17244b38d3105848c78e,
         type: 2}
       propertyPath: rotationStrength
-      value: 0
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 114227575333119024, guid: 5b5bee53217d17244b38d3105848c78e,
         type: 2}
